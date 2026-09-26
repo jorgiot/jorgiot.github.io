@@ -529,22 +529,23 @@ const PROJECTS = [
     short:{es:"Espada y Pluma", en:"Espada y Pluma"},
     note:{es:"Colección Historia de España en viñetas", en:"Historia de España en viñetas line"},
     desc:{es:"Dibujo y color. Primer número de la serie del Capitán Contreras para una editorial especializada en cómic histórico. Creado con El Torres.", en:"Art and colors. First issue of the Captain Contreras series for a Spanish publisher specialised in historical comics. Created with El Torres."}},
-  {id:"kull", cover:0, imgs:["p11","u-1","u-2","u-4b","u-8","u-24","u-25","u-26","p15"].map(x => "img/" + x + ".webp"), pub:"Karras Comics",
-    title:{es:"King Kull: Por este hacha", en:"King Kull"},
-    short:{es:"King Kull", en:"King Kull"},
-    note:{es:"Álbum", en:"Album, Spanish title: Por este hacha"},
+  {id:"kull", cover:0, flag:true, imgs:["u-portada","u-1","u-2","u-4b","u-8","u-24","u-25","u-26"].map(x => "img/" + x + ".webp"), pub:"Karras Comics",
+    title:{es:"Por este hacha", en:"Por este hacha"},
+    short:{es:"Por este hacha", en:"Por este hacha"},
+    note:{es:"Álbum de King Kull", en:"King Kull album"},
+    flagText:{es:"En preparación", en:"In progress"},
     desc:{es:"Dibujo y color. Álbum basado en el personaje King Kull de Robert E. Howard, creado con El Torres.", en:"Art and colors. Album based on Robert E. Howard's character King Kull, created with El Torres."}},
-  {id:"bdt", cover:1, imgs:[16,17,18,19].map(P), pub:"Scout Comics, Chispa Comics",
+  {id:"bdt", cover:5, imgs:["b-portada-texto","b-18","b-2","b-bd4-4-color","b-bd4-6-color","b-bd4-14-color","b-bd4-22-color","b-bd4-23-color"].map(x => "img/" + x + ".webp"), pub:"Scout Comics, Chispa Comics",
     title:{es:"Black Demon Tales", en:"Black Demon Tales"},
     short:{es:"Black Demon Tales", en:"Black Demon Tales"},
     note:{es:"Dos números", en:"Two issues"},
     desc:{es:"Dibujo y color en dos números. Cuatro historias que amplían el universo de la película The Black Demon, con un megalodón ancestral acechando en el Pacífico.", en:"Art and colors on two issues. Four tales expand the universe of The Black Demon film, with an ancient megalodon prowling the Pacific."}},
-  {id:"phantas", cover:0, imgs:["f-hawke-drood","f-1","f-2","f-3","p22"].map(x => "img/" + x + ".webp"), pub:"Karras Comics",
+  {id:"phantas", cover:0, flag:true, flagText:{es:"En preparación", en:"In progress"}, imgs:["f-hawke-drood","f-1","f-2","f-3","p22"].map(x => "img/" + x + ".webp"), pub:"Karras Comics",
     title:{es:"Phantasmagoria 2", en:"Phantasmagoria 2"},
     short:{es:"Phantasmagoria 2", en:"Phantasmagoria 2"},
     note:{es:"Terror en blanco y negro", en:"Black-and-white horror"},
     desc:{es:"Dibujo y color. Terror en blanco y negro con tramas de medio tono.", en:"Art and colors. Black-and-white halftone horror artwork."}},
-  {id:"tmyn", cover:0, imgs:[23,24].map(P), pub:"Moztros",
+  {id:"tmyn", cover:0, imgs:["d-tapa","d-captura-de-pantalla-2025-10-17-110639","d-captura-de-pantalla-2025-10-17-111002","d-captura-de-pantalla-2025-10-17-111109"].map(x => "img/" + x + ".webp"), pub:"Moztros",
     title:{es:"Dime tu nombre", en:"Tell Me Your Name"},
     short:{es:"Dime tu nombre", en:"Tell Me Your Name"},
     note:{es:"Con Prime Video, Spotlight Media y Skybound", en:"With Prime Video, Spotlight Media and Skybound"},
@@ -617,7 +618,7 @@ function renderPage(){
     cap.querySelector("b").textContent = p.short[lang];
     cap.querySelector("small").textContent = p.pub;
     b.appendChild(cap);
-    if(p.flag){ const f = document.createElement("span"); f.className = "flag"; f.textContent = p.note[lang]; b.appendChild(f); }
+    if(p.flag){ const f = document.createElement("span"); f.className = "flag"; f.textContent = (p.flagText || p.note)[lang]; b.appendChild(f); }
     const o = document.createElement("span"); o.className = "open"; o.textContent = T[lang].read + " " + T[lang].pages(p.imgs.length); b.appendChild(o);
     b.setAttribute("aria-label", T[lang].read + ": " + p.title[lang]);
     b.onclick = () => openReader({title:p.title[lang], meta:p.pub + ". " + p.note[lang] + ".", desc:p.desc[lang]}, p.imgs, 0, b);
@@ -810,9 +811,9 @@ const PFR = {
   killxote:{title:"Killxote : Le sanguinaire hidalgo Don Quixote de La Mancha",short:"Killxote",note:"Sortie en novembre 2026",desc:"Une relecture slasher et sanglante du classique espagnol, créée avec El Torres. Dessin et couleur de Jorge Esteban Urabayen."},
   anillos:{title:"Los Anillos de César",short:"Los Anillos de César",note:"Sortie en 2027",desc:"Bande dessinée historique. Scénario, encrage et couleur de Jorge Esteban Urabayen. Avec des recherches de personnages."},
   espada:{title:"Espada y Pluma : El Capitán Contreras y Lope de Vega",short:"Espada y Pluma",note:"Collection Historia de España en viñetas",desc:"Dessin et couleur. Premier tome de la série du Capitaine Contreras, pour un éditeur espagnol spécialisé en bande dessinée historique. Créé avec El Torres."},
-  kull:{title:"King Kull",short:"King Kull",note:"Album, titre espagnol : Por este hacha",desc:"Dessin et couleur. Album d'après le personnage King Kull de Robert E. Howard, créé avec El Torres."},
+  kull:{title:"Por este hacha",short:"Por este hacha",note:"Album de King Kull",flagText:"En préparation",desc:"Dessin et couleur. Album d'après le personnage King Kull de Robert E. Howard, créé avec El Torres."},
   bdt:{title:"Black Demon Tales",short:"Black Demon Tales",note:"Deux numéros",desc:"Dessin et couleur sur deux numéros. Quatre récits qui prolongent l'univers du film The Black Demon, avec un mégalodon ancestral qui rôde dans le Pacifique."},
-  phantas:{title:"Phantasmagoria 2",short:"Phantasmagoria 2",note:"Horreur en noir et blanc",desc:"Dessin et couleur. Horreur en noir et blanc avec trames de demi-teinte."},
+  phantas:{flagText:"En préparation",title:"Phantasmagoria 2",short:"Phantasmagoria 2",note:"Horreur en noir et blanc",desc:"Dessin et couleur. Horreur en noir et blanc avec trames de demi-teinte."},
   tmyn:{title:"Dime tu nombre (Tell Me Your Name)",short:"Dime tu nombre",note:"Avec Prime Video, Spotlight Media et Skybound",desc:"Dessin et couleur. Roman graphique d'après la série Tell Me Your Name, qui propose un nouveau regard sur deux époques. Créé avec El Torres et Valentín Ramón."}
 };
 PROJECTS.forEach(p => { const f = PFR[p.id]; if(f) Object.keys(f).forEach(k => { p[k].fr = f[k]; }); });
