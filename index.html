@@ -11,32 +11,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Archivo:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 <style>
 :root{
-  --paper:#F1F1EC;
-  --paper-2:#E6E6E0;
-  --ink:#17181C;
+  --paper:#FFFFFF;
+  --paper-2:#F3F3F1;
+  --ink:#111111;
   --ink-soft:#4A4C55;
   --line:#17181C;
-  --accent:#2F52C8;
+  --accent:#D63A1A;
   --accent-ink:#FFFFFF;
   --sold:#8B1E2B;
-  --dot:rgba(47,82,200,.22);
+  --dot:rgba(214,58,26,.20);
   --display:"Big Shoulders Display","Arial Narrow","Roboto Condensed",Impact,sans-serif;
   --body:"Archivo","Helvetica Neue",Arial,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
   --gutter:clamp(16px,4vw,48px);
   --z-header:20;--z-modal:40;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --paper:#131418;--paper-2:#1C1D23;--ink:#ECECE6;--ink-soft:#A7A9B2;--line:#ECECE6;
-    --accent:#7D95FF;--accent-ink:#0E1020;--sold:#D9596B;--dot:rgba(125,149,255,.20);
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --paper:#131418;--paper-2:#1C1D23;--ink:#ECECE6;--ink-soft:#A7A9B2;--line:#ECECE6;
-  --accent:#7D95FF;--accent-ink:#0E1020;--sold:#D9596B;--dot:rgba(125,149,255,.20);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -247,6 +235,24 @@ select.txt{appearance:auto;cursor:pointer}
 @keyframes panel{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes fade{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+.contact{background:var(--paper);color:var(--ink)}
+.mail{border-color:var(--ink)}
+.mail button{background:var(--ink);color:var(--paper)}
+footer{background:var(--paper);color:var(--ink)}
+footer{border-top:0}
+
+/* one palette per language */
+:root[data-lang="en"]{
+  color-scheme:dark;
+  --paper:#101114;--paper-2:#1B1C21;--ink:#ECECE6;--ink-soft:#A9ABB3;--line:#ECECE6;
+  --accent:#7D95FF;--accent-ink:#0E1020;--dot:rgba(125,149,255,.20);--sold:#E0677A;
+}
+:root[data-lang="fr"]{
+  --paper:#FAF8F3;--paper-2:#EEEBE3;--ink:#16201B;--ink-soft:#4B564F;--line:#16201B;
+  --accent:#1F6B4A;--accent-ink:#FFFFFF;--dot:rgba(31,107,74,.20);
+}
+body,.top,.contact,footer{transition:background-color .35s var(--ease),color .35s var(--ease)}
 </style>
 
 </head>
@@ -261,9 +267,10 @@ select.txt{appearance:auto;cursor:pointer}
       <a href="#encargos" data-i18n="nav_comm">Encargos</a>
       <a href="#contacto" data-i18n="nav_contact">Contacto</a>
     </nav>
-    <div class="lang" role="group" aria-label="Idioma / Language">
+    <div class="lang" role="group" aria-label="Idioma / Language / Langue">
       <button type="button" id="lang-es" data-lang="es" aria-pressed="true">ES</button>
       <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" id="lang-fr" data-lang="fr" aria-pressed="false">FR</button>
     </div>
   </div>
 </header>
@@ -586,7 +593,8 @@ const T = {
 };
 
 let lang = "es";
-try{ const s = localStorage.getItem("jorgiot-lang"); if(s==="es"||s==="en") lang=s; else if(!(navigator.language||"es").startsWith("es")) lang="en"; }catch(e){ if(!(navigator.language||"es").startsWith("es")) lang="en"; }
+const navLang = () => { const n = (navigator.language||"es").slice(0,2); return n==="es" ? "es" : n==="fr" ? "fr" : "en"; };
+try{ const s = localStorage.getItem("jorgiot-lang"); lang = (s==="es"||s==="en"||s==="fr") ? s : navLang(); }catch(e){ lang = navLang(); }
 
 const $ = s => document.querySelector(s);
 
@@ -752,6 +760,64 @@ m_custom:"New commission",m_print:"Custom print",f_deliv:"Delivery",o_orig:"Orig
 };
 Object.keys(CT).forEach(l => Object.assign(T[l], CT[l]));
 
+/* Français */
+T.fr = {nav_work:"Travaux",nav_about:"À propos",nav_covers:"Pin-ups",nav_contact:"Contact",
+  role:"Jorge Esteban Urabayen, dessinateur de bande dessinée",
+  lede:"Scénario, dessin, couleur, couvertures et character design. À paraître : Killxote (2026) et Los Anillos de César (2027).",
+  cta_work:"Voir les travaux",cta_contact:"Me contacter",work_title:"Travaux",
+  work_sub:"Sept bandes dessinées pour des éditeurs d'Espagne et des États-Unis, des prochaines sorties aux titres publiés. Touchez une case pour lire les planches.",
+  about_title:"J'ai toujours dessiné",
+  cap1:"Toute ma vie. J'étais le gamin au fond de la classe qui dessinait tout le monde en souriant tout seul.",
+  cap2:"J'adorais les comics. J'économisais chaque centime pour le dernier X-Men, Batman ou Spider-Man.",
+  cap3:"Cette passion ne m'a jamais quitté.",
+  about_note:"Parallèlement à ma carrière de graphiste, où j'ai illustré des couvertures de livres, des storyboards et beaucoup de travail numérique, je n'ai jamais cessé de faire de la bande dessinée. Ce portfolio réunit des travaux récents pour le marché éditorial européen et international, ainsi que quelques projets personnels.",
+  pins_title:"Pin-ups, couvertures et commandes",orig_title:"Originaux",orig_note:"Encre sur papier, pièces uniques. Demandez-moi le prix et la disponibilité.",prints_title:"Tirages",prints_note:"Imprimés, signés et dédicacés. A4 25 €, A3 40 €.",sold:"Vendu",ask_orig:"Demander l'original",pins_sub:"Encres originales, tirages signés et illustrations sur commande. Faites défiler chaque rangée.",
+  contact_title:"Travaillons ensemble",
+  contact_sub:"Scénario, bande dessinée, couvertures et character design. Écrivez-moi pour votre prochain projet.",
+  copy:"Copier",copied:"Copié",copyfail:"Sélectionnez et copiez",
+  foot:"Toutes les illustrations appartiennent à leur auteur et à leurs éditeurs.",
+  close:"Fermer",prev:"Précédente",next:"Suivante",read:"Lire",pages:n=>n===1?"1 planche":n+" planches",
+  chars:"character design",
+  slot:"Image à venir",broken:"Impossible de charger cette image",
+  nav_comm:"Commandes",c_title:"Commandes",
+  c_sub:"Dessin original sur commande, sur papier ou en numérique. Prix indicatifs pour un usage personnel, format A4 et fond blanc.",
+  x1_t:"Personnages en plus",x1_p:"Chaque personnage supplémentaire ajoute 50 % à 75 % du tarif de base.",
+  x2_t:"Décors",x2_p:"Le fond blanc est gratuit. Un décor travaillé ajoute de 20 € à 150 € selon sa complexité.",
+  x3_t:"A3 ou comic board",x3_p:"Passer de l'A4 à l'A3 ou au papier 11x17\" augmente le prix de 30 % à 50 %.",
+  x4_t:"Blank covers",x4_p:"Sur un comic officiel à couverture blanche. Buste encré de 50 € à 90 €, en pied de 120 € à 250 €.",
+  rights:"<b>Usage commercial.</b> Ces tarifs concernent un usage personnel (collection, décoration). Pour des pochettes de disques, du merchandising, des affiches ou des bannières, la cession de droits est chiffrée à part et double ou triple généralement le prix.",
+  m_custom:"Nouvelle commande",m_print:"Tirage personnalisé",f_deliv:"Livraison",o_orig:"Original sur papier",o_file:"Fichier numérique",o_p4:"Numérique + tirage A4",o_p3:"Numérique + tirage A3",
+  deliv_help:"Je vous envoie le fichier en haute résolution et, si vous le souhaitez, un tirage signé et dédicacé. Le tirage ajoute 20 € en A4 ou 35 € en A3. Frais d'envoi en sus.",
+  print_intro:"Choisissez une de mes illustrations et je l'imprime, signée et avec votre dédicace.",f_pic:"Illustration",f_size:"Format",o_pa4:"A4, 25 €",o_pa3:"A3, 40 €",f_qty:"Exemplaires",f_ded:"Dédicace",ph_ded:"Pour Lucie, avec toute mon amitié",
+  fine_print:"Prix total des tirages, signés et dédicacés. Frais d'envoi en sus.",
+  m_hip:"Bonjour Jorge, je souhaiterais commander un tirage personnalisé.",m_pic:"Illustration",m_size:"Format",m_qty:"Exemplaires",m_ded:"Dédicace",m_dedph:"[texte de la dédicace]",m_deliv:"Livraison",
+  subject_p:"Tirage personnalisé",order:"Commander un tirage",
+  b_title:"Passez commande",f_support:"Support",o_a4:"A4",o_a3:"A3 / comic board",o_blank:"Blank cover",
+  f_frame:"Cadrage",o_bust:"Buste",o_half:"Mi-corps",o_full:"En pied",
+  f_finish:"Finition",o_f0:"Crayon / encrage rapide",o_f1:"Encrage fini",o_f2:"Couleur",
+  blank_help:"Pour les blank covers, le prix inclut déjà la finition : buste encré, ou en pied à l'encre ou en couleur. Le mi-corps n'est pas disponible.",
+  f_chars:"Personnages",f_bg:"Fond",o_bg0:"Blanc",o_bg1:"Simple",o_bg2:"Travaillé",
+  f_use:"Usage",o_personal:"Personnel",o_commercial:"Commercial",
+  f_name:"Votre nom",f_idea:"Votre idée",ph_idea:"Personnage, pose, références, date souhaitée...",
+  q_label:"Estimation",q_msg:"Votre message",q_copy:"Copier le message",q_open:"Ouvrir la messagerie",
+  q_how:"Envoyez-le à cette adresse et je vous réponds avec le prix définitif et les délais :",
+  fine_p:"Prix indicatif. Je vous confirme le montant final quand j'aurai vu votre idée.",
+  fine_c:"Inclut la cession de droits commerciaux (deux à trois fois le tarif). Je vous confirme le montant final quand je connaîtrai l'usage.",
+  th0:"Cadrage",a:"à",
+  m_hi:"Bonjour Jorge, je souhaiterais vous commander une illustration.",m_name:"Nom",m_support:"Support",m_frame:"Cadrage",m_finish:"Finition",m_chars:"Personnages",m_bg:"Fond",m_use:"Usage",m_idea:"Idée",m_est:"Estimation du site",m_you:"[votre nom]",m_ideaph:"[décrivez votre idée]",
+  subject:"Commande d'illustration"};
+const PFR = {
+  killxote:{title:"Killxote : Le sanguinaire hidalgo Don Quixote de La Mancha",short:"Killxote",note:"Sortie en novembre 2026",desc:"Une relecture slasher et sanglante du classique espagnol, créée avec El Torres. Dessin et couleur de Jorge Esteban Urabayen."},
+  anillos:{title:"Los Anillos de César",short:"Los Anillos de César",note:"Sortie en 2027",desc:"Bande dessinée historique. Scénario, encrage et couleur de Jorge Esteban Urabayen. Avec des recherches de personnages."},
+  espada:{title:"Espada y Pluma : El Capitán Contreras y Lope de Vega",short:"Espada y Pluma",note:"Collection Historia de España en viñetas",desc:"Dessin et couleur. Premier tome de la série du Capitaine Contreras, pour un éditeur espagnol spécialisé en bande dessinée historique. Créé avec El Torres."},
+  kull:{title:"King Kull",short:"King Kull",note:"Album, titre espagnol : Por este hacha",desc:"Dessin et couleur. Album d'après le personnage King Kull de Robert E. Howard, créé avec El Torres."},
+  bdt:{title:"Black Demon Tales",short:"Black Demon Tales",note:"Deux numéros",desc:"Dessin et couleur sur deux numéros. Quatre récits qui prolongent l'univers du film The Black Demon, avec un mégalodon ancestral qui rôde dans le Pacifique."},
+  phantas:{title:"Phantasmagoria 2",short:"Phantasmagoria 2",note:"Horreur en noir et blanc",desc:"Dessin et couleur. Horreur en noir et blanc avec trames de demi-teinte."},
+  tmyn:{title:"Dime tu nombre (Tell Me Your Name)",short:"Dime tu nombre",note:"Avec Prime Video, Spotlight Media et Skybound",desc:"Dessin et couleur. Roman graphique d'après la série Tell Me Your Name, qui propose un nouveau regard sur deux époques. Créé avec El Torres et Valentín Ramón."}
+};
+PROJECTS.forEach(p => { const f = PFR[p.id]; if(f) Object.keys(f).forEach(k => { p[k].fr = f[k]; }); });
+
+
 const RATES = {bust:[[40,70],[70,110],[120,180]], half:[[70,110],[110,160],[180,260]], full:[[100,150],[150,230],[250,400]]};
 const BLANK = {bust:[50,90], full:[120,250]};
 const BG = {none:[0,0], simple:[20,60], full:[60,150]};
@@ -894,7 +960,7 @@ $("#q-copy").addEventListener("click", () => {
 });
 
 function setLang(l){
-  lang = l; document.documentElement.lang = l;
+  lang = l; document.documentElement.lang = l; document.documentElement.dataset.lang = l;
   try{ localStorage.setItem("jorgiot-lang", l); }catch(e){}
   document.querySelectorAll("[data-i18n]").forEach(el => { const v = T[l][el.dataset.i18n]; if(typeof v === "string") el.textContent = v; });
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang===l));
