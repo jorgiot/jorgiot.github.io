@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Jorge Esteban Urabayen, Jorgiot. Dibujante de cómic: guion, dibujo, color, portadas, originales, prints y encargos.">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Jorgiot Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Archivo:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+:root{
+  --paper:#F1F1EC;
+  --paper-2:#E6E6E0;
+  --ink:#17181C;
+  --ink-soft:#4A4C55;
+  --line:#17181C;
+  --accent:#2F52C8;
+  --accent-ink:#FFFFFF;
+  --sold:#8B1E2B;
+  --dot:rgba(47,82,200,.22);
+  --display:"Big Shoulders Display","Arial Narrow","Roboto Condensed",Impact,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --gutter:clamp(16px,4vw,48px);
+  --z-header:20;--z-modal:40;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#131418;--paper-2:#1C1D23;--ink:#ECECE6;--ink-soft:#A7A9B2;--line:#ECECE6;
+    --accent:#7D95FF;--accent-ink:#0E1020;--sold:#D9596B;--dot:rgba(125,149,255,.20);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#131418;--paper-2:#1C1D23;--ink:#ECECE6;--ink-soft:#A7A9B2;--line:#ECECE6;
+  --accent:#7D95FF;--accent-ink:#0E1020;--sold:#D9596B;--dot:rgba(125,149,255,.20);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1280px;margin-inline:auto;padding-inline:var(--gutter)}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:var(--z-header);background:var(--paper);border-bottom:3px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:24px;height:68px}
+.brand{font:900 30px/1 var(--display);letter-spacing:.02em;text-decoration:none;text-transform:uppercase}
+.nav{display:flex;gap:28px;margin-left:auto}
+.nav a{font:700 14px/1 var(--body);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;padding-block:6px;background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 3px no-repeat;transition:background-size .4s var(--ease)}
+.nav a:hover{background-size:100% 3px}
+.lang{display:flex;border:2px solid var(--line)}
+.lang button{font:700 13px/1 var(--body);letter-spacing:.06em;padding:8px 10px;background:transparent;color:var(--ink);border:0;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+@media (max-width:767px){.nav{display:none}.lang{margin-left:auto}}
+
+/* hero */
+.hero{padding-block:clamp(32px,6vw,80px) clamp(48px,7vw,96px)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,72px);align-items:center}
+.hero h1{font:900 clamp(88px,15vw,210px)/.82 var(--display);letter-spacing:-.01em;text-transform:uppercase;margin:0 0 20px}
+.hero h1 span{display:block;animation:rise .9s var(--ease) both}
+.role{font:800 clamp(24px,2.8vw,36px)/1.05 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:0 0 16px;max-width:24ch;text-wrap:balance}
+.lede{max-width:44ch;color:var(--ink-soft);margin:0 0 28px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--body);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;padding:16px 22px;border:3px solid var(--line);white-space:nowrap;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--line)}
+.btn:active{transform:translate(1px,1px);box-shadow:none}
+.cover{position:relative;justify-self:end;width:min(100%,460px);animation:rise 1s .15s var(--ease) both}
+.cover::before{content:"";position:absolute;inset:0;transform:translate(14px,14px);background:var(--accent)}
+.cover .frame{position:relative;border:4px solid var(--line);background:#FBFBF8;aspect-ratio:3/4;overflow:hidden}
+.cover .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+@media (max-width:767px){.hero .wrap{grid-template-columns:1fr}.cover{justify-self:start;width:min(88%,400px)}}
+
+/* placeholder / halftone */
+.slot{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px;background:radial-gradient(var(--dot) 28%,transparent 30%) 0 0/10px 10px,var(--paper-2);color:var(--ink-soft);font:700 12px/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase}
+
+/* section heads */
+section{scroll-margin-top:84px}
+.head{margin-bottom:clamp(24px,3.5vw,44px)}
+.head h2{font:900 clamp(52px,8vw,112px)/.85 var(--display);text-transform:uppercase;margin:0 0 14px;letter-spacing:-.005em}
+.head p{margin:0;max-width:52ch;color:var(--ink-soft)}
+
+/* comic page grid */
+.work{padding-block:clamp(56px,8vw,112px);border-top:3px solid var(--line)}
+.page{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(180px,22vw,300px);gap:clamp(10px,1.4vw,18px);padding:clamp(10px,1.4vw,18px);background:var(--paper);border:4px solid var(--line)}
+.panel{position:relative;border:3px solid var(--line);overflow:hidden;background:var(--paper-2);cursor:pointer;padding:0;color:inherit;text-align:left;font:inherit;animation:panel .8s var(--ease) both}
+.panel:nth-child(1){grid-column:span 4;grid-row:span 2;animation-delay:.05s}
+.panel:nth-child(2){grid-column:span 2;grid-row:span 2;animation-delay:.12s}
+.panel:nth-child(3){grid-column:span 2;animation-delay:.19s}
+.panel:nth-child(4){grid-column:span 2;animation-delay:.26s}
+.panel:nth-child(5){grid-column:span 2;animation-delay:.33s}
+.panel:nth-child(6){grid-column:span 3;animation-delay:.40s}
+.panel:nth-child(7){grid-column:span 3;animation-delay:.47s}
+.panel:nth-child(7) img{object-position:50% 40%}
+.flag{position:absolute;right:-3px;top:-3px;z-index:1;background:var(--accent);color:var(--accent-ink);font:800 clamp(16px,1.6vw,22px)/1 var(--display);text-transform:uppercase;letter-spacing:.02em;padding:10px 12px 9px}
+.panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .7s var(--ease)}
+.panel:hover img{transform:scale(1.04)}
+.cap{position:absolute;left:-3px;top:-3px;z-index:1;background:var(--paper);border:3px solid var(--line);padding:10px 14px 9px;max-width:80%}
+.cap b{display:block;font:800 clamp(20px,2.2vw,30px)/1 var(--display);text-transform:uppercase;letter-spacing:.01em}
+.cap small{display:block;margin-top:4px;font:500 13px/1.3 var(--body);color:var(--ink-soft)}
+.open{position:absolute;right:12px;bottom:12px;z-index:1;display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:var(--paper);font:700 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:9px 12px;transform:translateY(6px);opacity:0;transition:.35s var(--ease)}
+.panel:hover .open,.panel:focus-visible .open{transform:none;opacity:1}
+@media (hover:none){.open{opacity:1;transform:none}}
+@media (max-width:767px){
+  .page{grid-template-columns:1fr;grid-auto-rows:auto}
+  .panel,.panel:nth-child(n){grid-column:auto;grid-row:auto;aspect-ratio:4/5}
+  .panel:nth-child(7){aspect-ratio:16/10}
+}
+
+/* about */
+.about{padding-block:clamp(56px,8vw,112px);border-top:3px solid var(--line)}
+.about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.about .portrait{position:relative;border:4px solid var(--line);aspect-ratio:3/4;overflow:hidden;background:var(--paper-2)}
+.about .portrait{background:#FBFBF8}
+.about .portrait img{width:100%;height:100%;object-fit:contain}
+.story h2{font:900 clamp(52px,7.5vw,104px)/.85 var(--display);text-transform:uppercase;margin:0 0 28px;text-wrap:balance}
+.captions{display:grid;gap:14px;max-width:60ch}
+.captions p{margin:0;border:3px solid var(--line);background:var(--paper);padding:14px 18px;box-shadow:6px 6px 0 var(--dot)}
+.captions p:nth-child(2){margin-left:clamp(0px,4vw,48px)}
+.captions p:nth-child(3){margin-left:clamp(0px,2vw,24px)}
+.captions .loud{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font:800 clamp(26px,3vw,38px)/1 var(--display);text-transform:uppercase;justify-self:start;padding:14px 20px}
+.story .note{margin:28px 0 0;color:var(--ink-soft);max-width:60ch}
+@media (max-width:767px){.about .wrap{grid-template-columns:1fr}.about .portrait{max-width:420px}}
+
+/* pinups strip */
+.pins{padding-block:clamp(56px,8vw,112px);border-top:3px solid var(--line)}
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(220px,24vw,320px);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;scrollbar-color:var(--ink) transparent}
+.strip button{scroll-snap-align:start;position:relative;aspect-ratio:2/3;border:3px solid var(--line);background:var(--paper-2);overflow:hidden;padding:0;cursor:pointer;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.strip button:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--accent)}
+.strip img{width:100%;height:100%;object-fit:cover}
+.group{margin-top:clamp(28px,3.5vw,48px)}
+.group:first-of-type{margin-top:0}
+.group-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px;margin-bottom:16px}
+.group-head h3{font:900 clamp(30px,3.6vw,48px)/.9 var(--display);text-transform:uppercase;margin:0}
+.group-head p{margin:0;color:var(--ink-soft);max-width:60ch}
+.strip button.is-sold img{filter:grayscale(.35);opacity:.8}
+.sold{position:absolute;left:10px;top:14px;z-index:1;transform:rotate(-6deg);border:3px solid var(--sold);color:var(--sold);background:color-mix(in srgb,var(--paper) 88%,transparent);font:900 clamp(22px,2.2vw,30px)/1 var(--display);text-transform:uppercase;letter-spacing:.06em;padding:6px 12px 4px}
+
+/* contact */
+.contact{padding-block:clamp(64px,9vw,128px);border-top:3px solid var(--line);background:var(--ink);color:var(--paper)}
+.contact h2{font:900 clamp(56px,10vw,150px)/.84 var(--display);text-transform:uppercase;margin:0 0 20px;max-width:12ch;text-wrap:balance}
+.contact p{max-width:48ch;margin:0 0 32px;opacity:.8}
+.mails{display:grid;gap:12px;max-width:720px}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:12px;border:3px solid var(--paper);padding:14px 16px}
+.mail span{font:800 clamp(20px,3vw,32px)/1.1 var(--display);letter-spacing:.01em;user-select:all;overflow-wrap:anywhere;flex:1 1 240px}
+.mail button{font:700 13px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:12px 14px;background:var(--paper);color:var(--ink);border:0;cursor:pointer;white-space:nowrap}
+.mail button:active{transform:translateY(1px)}
+footer{background:var(--ink);color:var(--paper);border-top:1px solid color-mix(in srgb,var(--paper) 25%,transparent)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:22px;font-size:14px;opacity:.75}
+
+/* commissions */
+.comm{padding-block:clamp(56px,8vw,112px);border-top:3px solid var(--line)}
+.rates{display:grid;grid-template-columns:1.1fr repeat(3,1fr);gap:clamp(8px,1vw,12px)}
+.rates .th{font:700 13px/1.2 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);align-self:end;padding:0 4px 4px}
+.rates .rl{font:800 clamp(22px,2.4vw,32px)/1 var(--display);text-transform:uppercase;align-self:center}
+.rates .cell{border:3px solid var(--line);background:var(--paper);padding:14px 14px 12px;display:grid;gap:2px;transition:background .3s var(--ease),color .3s var(--ease),transform .3s var(--ease)}
+.rates .cell b{font:800 clamp(22px,2.2vw,30px)/1 var(--display);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.rates .cell small{display:none;font:600 12px/1.2 var(--body);color:var(--ink-soft)}
+.rates .cell.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--line)}
+.rates .cell.on small{color:inherit}
+@media (max-width:639px){
+  .rates{grid-template-columns:repeat(3,1fr)}
+  .rates .th,.rates .corner{display:none}
+  .rates .rl{grid-column:1/-1;margin-top:10px}
+  .rates .cell{padding:10px 8px;align-content:space-between}
+  .rates .cell b{font-size:18px}
+  .rates .cell small{display:block}
+}
+.extras{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,18px);margin-top:clamp(24px,3vw,36px)}
+.extras div{border-top:3px solid var(--line);padding-top:12px}
+.extras b{display:block;font:800 22px/1.05 var(--display);text-transform:uppercase;margin-bottom:6px}
+.extras p{margin:0;font-size:15px;line-height:1.5;color:var(--ink-soft)}
+@media (max-width:1023px){.extras{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:559px){.extras{grid-template-columns:1fr}}
+.rights{margin:clamp(24px,3vw,36px) 0 0;padding:16px 18px;border:3px solid var(--line);background:radial-gradient(var(--dot) 28%,transparent 30%) 0 0/10px 10px,var(--paper);max-width:80ch}
+.rights b{font-weight:700}
+
+.builder{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,56px);margin-top:clamp(48px,6vw,80px);align-items:start}
+.builder h3{grid-column:1/-1;font:900 clamp(40px,5.5vw,72px)/.9 var(--display);text-transform:uppercase;margin:0}
+.fields{display:grid;gap:26px}
+.fields fieldset{border:0;margin:0;padding:0;display:grid;gap:10px;min-width:0}
+.fields legend,.fields label.lbl{font:700 13px/1.2 var(--body);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chips span{display:inline-block;padding:11px 14px;border:3px solid var(--line);font:600 15px/1 var(--body);background:var(--paper);transition:background .2s,color .2s}
+.chips input:checked+span{background:var(--ink);color:var(--paper)}
+.chips input:focus-visible+span{outline:3px solid var(--accent);outline-offset:3px}
+.chips input:disabled+span{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+fieldset:disabled .chips span{opacity:.35}
+.help{margin:0;font-size:14px;color:var(--ink-soft)}
+.stepper{display:inline-flex;align-items:stretch;border:3px solid var(--line);width:max-content}
+.stepper button{width:46px;font:800 22px/1 var(--display);background:var(--paper);color:var(--ink);border:0;cursor:pointer}
+.stepper button:hover{background:var(--ink);color:var(--paper)}
+.stepper output{min-width:56px;display:grid;place-items:center;font:800 24px/1 var(--display);border-inline:3px solid var(--line);font-variant-numeric:tabular-nums}
+.txt{width:100%;font:400 16px/1.5 var(--body);color:var(--ink);background:var(--paper);border:3px solid var(--line);padding:12px 14px;border-radius:0}
+.txt::placeholder{color:var(--ink-soft);opacity:1}
+.txt:focus{outline:3px solid var(--accent);outline-offset:2px}
+textarea.txt{min-height:120px;resize:vertical}
+.tabs{margin-bottom:28px}
+.tabs span{font:800 20px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;padding:14px 18px}
+.tabs input:checked+span{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.bcol{display:grid;gap:26px;min-width:0}
+.bcol>.tabs{margin-bottom:0}
+.p-pick{display:grid;grid-template-columns:1fr 96px;gap:14px;align-items:start}
+.p-prev{position:relative;aspect-ratio:2/3;border:3px solid var(--line);background:var(--paper-2);overflow:hidden}
+.p-prev img{width:100%;height:100%;object-fit:cover}
+select.txt{appearance:auto;cursor:pointer}
+#r-order{padding:12px 16px}
+.quote{position:sticky;top:calc(env(safe-area-inset-top,0px) + 92px);border:4px solid var(--line);background:var(--paper);box-shadow:10px 10px 0 var(--accent);padding:clamp(18px,2vw,26px);display:grid;gap:14px}
+.quote .lbl{font:700 13px/1.2 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.quote .price{font:900 clamp(44px,5vw,68px)/.9 var(--display);font-variant-numeric:tabular-nums;margin:0}
+.quote .fine{margin:0;font-size:14px;color:var(--ink-soft)}
+.quote pre{margin:0;white-space:pre-wrap;font:400 14px/1.5 var(--body);background:var(--paper-2);border:2px solid var(--line);padding:12px;max-height:340px;overflow:auto}
+.quote .row{display:flex;flex-wrap:wrap;gap:10px}
+.quote .mailto{font:700 15px/1.2 var(--body)}
+.quote .mailto span{user-select:all}
+@media (max-width:899px){.builder{grid-template-columns:1fr}.quote{position:static}}
+
+/* reader */
+.reader{position:fixed;inset:0;z-index:var(--z-modal);background:color-mix(in srgb,var(--paper) 96%,transparent);display:grid;grid-template-rows:auto 1fr auto;padding:calc(env(safe-area-inset-top,0px) + 12px) var(--gutter) calc(env(safe-area-inset-bottom,0px) + 16px)}
+.reader[hidden]{display:none}
+.reader header{display:flex;align-items:center;gap:16px;min-height:56px}
+.reader header{align-items:flex-start}
+.rt{display:grid;gap:6px;min-width:0;max-width:80ch;padding-bottom:12px}
+.rt b{font:900 clamp(24px,3vw,40px)/.95 var(--display);text-transform:uppercase;text-wrap:balance}
+.rt .meta{font:700 13px/1.3 var(--body);letter-spacing:.04em;color:var(--accent)}
+.rt .desc{font-size:15px;line-height:1.5;color:var(--ink-soft)}
+@media (max-width:767px){.rt .desc{display:none}}
+.reader nav{align-items:center}
+.reader nav .count{margin-right:auto;color:var(--ink-soft);font:500 14px/1.2 var(--body);font-variant-numeric:tabular-nums}
+.reader .x{margin-left:auto}
+.stage{position:relative;min-height:0;display:grid;place-items:center}
+.stage{overflow:hidden}
+.stage img{position:absolute;inset:0;margin:auto;max-height:100%;max-width:100%;object-fit:contain;border:3px solid var(--line);background:var(--paper-2);animation:fade .45s var(--ease)}
+.stage .slot{position:relative;inset:auto;width:min(90%,480px);aspect-ratio:2/3;border:3px dashed var(--line)}
+.reader nav{display:flex;justify-content:center;gap:12px;padding-top:14px}
+.ibtn{font:700 14px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:14px 18px;background:var(--paper);color:var(--ink);border:3px solid var(--line);cursor:pointer}
+.ibtn:hover{background:var(--ink);color:var(--paper)}
+.ibtn:disabled{opacity:.35;cursor:default;background:var(--paper);color:var(--ink)}
+
+@keyframes rise{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+@keyframes panel{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes fade{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio">Jorgiot</a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#trabajos" data-i18n="nav_work">Trabajos</a>
+      <a href="#sobre-mi" data-i18n="nav_about">Sobre mí</a>
+      <a href="#portadas" data-i18n="nav_covers">Pinups</a>
+      <a href="#encargos" data-i18n="nav_comm">Encargos</a>
+      <a href="#contacto" data-i18n="nav_contact">Contacto</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" id="lang-es" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1><span>Jorgiot</span></h1>
+        <p class="role" data-i18n="role">Jorge Esteban Urabayen, dibujante de cómic</p>
+        <p class="lede" data-i18n="lede">Páginas interiores, portadas y pinups para editoriales de España, Italia y Estados Unidos.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#trabajos" data-i18n="cta_work">Ver trabajos</a>
+          <a class="btn btn-ghost" href="#contacto" data-i18n="cta_contact">Contactar</a>
+        </div>
+      </div>
+      <div class="cover" id="hero-cover"><div class="frame"></div></div>
+    </div>
+  </section>
+
+  <section class="work" id="trabajos">
+    <div class="wrap">
+      <div class="head">
+        <h2 data-i18n="work_title">Trabajos</h2>
+        <p data-i18n="work_sub">Siete cómics para editoriales de España y Estados Unidos, del próximo lanzamiento a los ya publicados. Pulsa una viñeta para leer las páginas.</p>
+      </div>
+      <div class="page" id="page"></div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre-mi">
+    <div class="wrap">
+      <div class="portrait" id="about-img"></div>
+      <div class="story">
+        <h2 data-i18n="about_title">Siempre he dibujado</h2>
+        <div class="captions">
+          <p data-i18n="cap1">Desde niño. Era el chaval que se sentaba al fondo de la clase y dibujaba a todo el mundo, mordiéndome la lengua y sonriendo para mis adentros.</p>
+          <p data-i18n="cap2">Y me encantaban los cómics. Ahorraba cada céntimo para comprar el último número de X-Men, Batman o la nueva aventura de tu amigo y vecino Spider-Man.</p>
+          <p class="loud" data-i18n="cap3">Esa pasión nunca se fue.</p>
+        </div>
+        <p class="note" data-i18n="about_note">Como diseñador he ilustrado cubiertas de libros, storyboards y mucho trabajo digital, pero nunca he dejado de hacer cómic. Aquí reúno mis últimos trabajos para el mercado editorial y algunos proyectos personales.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pins" id="portadas">
+    <div class="wrap">
+      <div class="head">
+        <h2 data-i18n="pins_title">Pinups, portadas y encargos</h2>
+        <p data-i18n="pins_sub">Ilustraciones sueltas y cubiertas. Desliza para ver más.</p>
+      </div>
+      <div class="group" id="orig-block">
+        <div class="group-head">
+          <h3 data-i18n="orig_title">Originales</h3>
+          <p data-i18n="orig_note">Tinta sobre papel, piezas únicas. Pregúntame por su precio y disponibilidad.</p>
+        </div>
+        <div class="strip" id="orig-strip"></div>
+      </div>
+      <div class="group">
+        <div class="group-head">
+          <h3 data-i18n="prints_title">Prints</h3>
+          <p data-i18n="prints_note">Impresas, firmadas y con tu dedicatoria. A4 25 €, A3 40 €.</p>
+        </div>
+        <div class="strip" id="strip"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="comm" id="encargos">
+    <div class="wrap">
+      <div class="head">
+        <h2 data-i18n="c_title">Encargos</h2>
+        <p data-i18n="c_sub">Dibujo original por encargo, en papel o digital. Precios orientativos para uso personal, en formato A4 y con fondo blanco.</p>
+      </div>
+      <div class="rates" id="rates" role="table" aria-label="Tarifas"></div>
+      <div class="extras">
+        <div><b data-i18n="x1_t">Más personajes</b><p data-i18n="x1_p">Cada personaje extra suma entre un 50 % y un 75 % de la tarifa base.</p></div>
+        <div><b data-i18n="x2_t">Fondos</b><p data-i18n="x2_p">El fondo blanco no tiene coste. Un fondo trabajado añade de 20 € a 150 € según su complejidad.</p></div>
+        <div><b data-i18n="x3_t">A3 o comic board</b><p data-i18n="x3_p">Pasar de A4 a A3 o a papel de 11x17" sube el precio entre un 30 % y un 50 %.</p></div>
+        <div><b data-i18n="x4_t">Blank covers</b><p data-i18n="x4_p">Sobre cómic oficial con portada en blanco. Busto entintado de 50 € a 90 €, cuerpo entero de 120 € a 250 €.</p></div>
+      </div>
+      <p class="rights" data-i18n-html="rights"><b>Uso comercial.</b> Estas tarifas son para uso personal (colección, decoración). Para portadas de discos, merchandising, carteles o banners, la cesión de derechos se presupuesta aparte y suele duplicar o triplicar el precio.</p>
+
+      <form class="builder" id="builder" novalidate>
+        <h3 data-i18n="b_title">Pide tu encargo</h3>
+        <div class="bcol">
+          <div class="chips tabs" role="radiogroup" aria-label="Tipo">
+            <label><input type="radio" name="mode" id="m-custom" value="custom" checked><span data-i18n="m_custom">Encargo nuevo</span></label>
+            <label><input type="radio" name="mode" id="m-print" value="print"><span data-i18n="m_print">Print personalizado</span></label>
+          </div>
+        <div class="fields" id="f-custom">
+          <fieldset>
+            <legend data-i18n="f_deliv">Entrega</legend>
+            <div class="chips">
+              <label><input type="radio" name="deliv" id="d-orig" value="orig" checked><span data-i18n="o_orig">Original en papel</span></label>
+              <label><input type="radio" name="deliv" id="d-file" value="file"><span data-i18n="o_file">Archivo digital</span></label>
+              <label><input type="radio" name="deliv" id="d-p4" value="p4"><span data-i18n="o_p4">Digital + print A4</span></label>
+              <label><input type="radio" name="deliv" id="d-p3" value="p3"><span data-i18n="o_p3">Digital + print A3</span></label>
+            </div>
+            <p class="help" id="deliv-help" hidden data-i18n="deliv_help">Te envío el archivo en alta resolución y un print firmado y dedicado. El print suma 20 € en A4 o 35 € en A3. Envío aparte.</p>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="f_support">Soporte</legend>
+            <div class="chips">
+              <label><input type="radio" name="support" id="s-a4" value="a4" checked><span data-i18n="o_a4">A4</span></label>
+              <label><input type="radio" name="support" id="s-a3" value="a3"><span data-i18n="o_a3">A3 / comic board</span></label>
+              <label><input type="radio" name="support" id="s-blank" value="blank"><span data-i18n="o_blank">Blank cover</span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="f_frame">Encuadre</legend>
+            <div class="chips">
+              <label><input type="radio" name="frame" id="fr-bust" value="bust" checked><span data-i18n="o_bust">Busto</span></label>
+              <label><input type="radio" name="frame" id="fr-half" value="half"><span data-i18n="o_half">Medio cuerpo</span></label>
+              <label><input type="radio" name="frame" id="fr-full" value="full"><span data-i18n="o_full">Cuerpo entero</span></label>
+            </div>
+          </fieldset>
+          <fieldset id="fs-finish">
+            <legend data-i18n="f_finish">Acabado</legend>
+            <div class="chips">
+              <label><input type="radio" name="finish" id="fi-0" value="0"><span data-i18n="o_f0">Lápiz / tinta rápida</span></label>
+              <label><input type="radio" name="finish" id="fi-1" value="1" checked><span data-i18n="o_f1">Tinta acabada</span></label>
+              <label><input type="radio" name="finish" id="fi-2" value="2"><span data-i18n="o_f2">Color</span></label>
+            </div>
+            <p class="help" id="blank-help" hidden data-i18n="blank_help">En blank covers el precio ya incluye el acabado: busto entintado o cuerpo entero en tinta o color.</p>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="f_chars">Personajes</legend>
+            <div class="stepper">
+              <button type="button" id="ch-minus" aria-label="-1">−</button>
+              <output id="ch-out" aria-live="polite">1</output>
+              <button type="button" id="ch-plus" aria-label="+1">+</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="f_bg">Fondo</legend>
+            <div class="chips">
+              <label><input type="radio" name="bg" id="bg-none" value="none" checked><span data-i18n="o_bg0">Blanco</span></label>
+              <label><input type="radio" name="bg" id="bg-simple" value="simple"><span data-i18n="o_bg1">Sencillo</span></label>
+              <label><input type="radio" name="bg" id="bg-full" value="full"><span data-i18n="o_bg2">Trabajado</span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="f_use">Uso</legend>
+            <div class="chips">
+              <label><input type="radio" name="use" id="u-personal" value="personal" checked><span data-i18n="o_personal">Personal</span></label>
+              <label><input type="radio" name="use" id="u-commercial" value="commercial"><span data-i18n="o_commercial">Comercial</span></label>
+            </div>
+          </fieldset>
+          <div>
+            <label class="lbl" for="c-idea" data-i18n="f_idea">Tu idea</label>
+            <textarea class="txt" id="c-idea" data-i18n-ph="ph_idea" placeholder="Personaje, pose, referencias, fecha que te interesa..."></textarea>
+          </div>
+        </div>
+        <div class="fields" id="f-print" hidden>
+          <p class="help" data-i18n="print_intro">Elige una de mis ilustraciones y la imprimo firmada y con tu dedicatoria.</p>
+          <div>
+            <label class="lbl" for="p-pic" data-i18n="f_pic">Ilustración</label>
+            <div class="p-pick">
+              <select class="txt" id="p-pic"></select>
+              <div class="p-prev" id="p-prev"></div>
+            </div>
+          </div>
+          <fieldset>
+            <legend data-i18n="f_size">Tamaño</legend>
+            <div class="chips">
+              <label><input type="radio" name="psize" id="ps-a4" value="a4" checked><span data-i18n="o_pa4">A4, 25 €</span></label>
+              <label><input type="radio" name="psize" id="ps-a3" value="a3"><span data-i18n="o_pa3">A3, 40 €</span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="f_qty">Copias</legend>
+            <div class="stepper">
+              <button type="button" id="pq-minus" aria-label="-1">−</button>
+              <output id="pq-out" aria-live="polite">1</output>
+              <button type="button" id="pq-plus" aria-label="+1">+</button>
+            </div>
+          </fieldset>
+          <div>
+            <label class="lbl" for="c-ded" data-i18n="f_ded">Dedicatoria</label>
+            <input class="txt" id="c-ded" type="text" maxlength="120" data-i18n-ph="ph_ded" placeholder="Para Lucía, de parte de Killxote">
+          </div>
+        </div>
+        <div class="fields">
+          <div>
+            <label class="lbl" for="c-name" data-i18n="f_name">Tu nombre</label>
+            <input class="txt" id="c-name" type="text" autocomplete="name">
+          </div>
+        </div>
+        </div>
+
+        <aside class="quote" aria-live="polite">
+          <span class="lbl" data-i18n="q_label">Estimación</span>
+          <p class="price" id="q-price">70 a 110 €</p>
+          <p class="fine" id="q-fine"></p>
+          <span class="lbl" data-i18n="q_msg">Tu mensaje</span>
+          <pre id="q-msg"></pre>
+          <div class="row">
+            <button type="button" class="btn btn-primary" id="q-copy" data-i18n="q_copy">Copiar mensaje</button>
+            <a class="btn btn-ghost" id="q-mail" href="mailto:jorgiot@gmail.com" data-i18n="q_open">Abrir correo</a>
+          </div>
+          <p class="fine" data-i18n="q_how">Envíalo a esta dirección y te respondo con el precio cerrado y los plazos:</p>
+          <p class="mailto"><span>jorgiot@gmail.com</span></p>
+        </aside>
+      </form>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <h2 data-i18n="contact_title">¿Hablamos de tu próximo cómic?</h2>
+      <p data-i18n="contact_sub">Disponible para series, números sueltos, portadas y pinups. Escríbeme y te respondo en pocos días.</p>
+      <div class="mails">
+        <div class="mail"><span>jorgiot@gmail.com</span><button type="button" id="copy-1" data-copy="jorgiot@gmail.com" data-i18n="copy">Copiar</button></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Jorge Esteban Urabayen “Jorgiot”</span><span data-i18n="foot">Todas las ilustraciones son propiedad de su autor y sus editoriales.</span></div>
+</footer>
+
+<div class="reader" id="reader" hidden role="dialog" aria-modal="true" aria-labelledby="r-title">
+  <header>
+    <div class="rt"><b id="r-title"></b><span class="meta" id="r-meta"></span><span class="desc" id="r-desc"></span></div>
+    <button type="button" class="ibtn x" id="r-close" data-i18n="close">Cerrar</button>
+  </header>
+  <div class="stage" id="r-stage"></div>
+  <nav>
+    <span class="count" id="r-count"></span>
+    <button type="button" class="ibtn" id="r-prev" data-i18n="prev">Anterior</button>
+    <button type="button" class="ibtn" id="r-next" data-i18n="next">Siguiente</button>
+    <button type="button" class="btn btn-primary" id="r-order" hidden data-i18n="order">Pedir print</button>
+  </nav>
+</div>
+
+<script>
+/* Imágenes: rutas relativas publicadas junto a la página */
+const IMG = {hero:"img/p01.webp", about:"img/p07.webp"};
+const P = n => "img/p" + String(n).padStart(2,"0") + ".webp";
+
+const PROJECTS = [
+  {id:"killxote", cover:1, imgs:[3,4,5,6,7].map(P), pub:"Tomos y Grapas", flag:true,
+    title:{es:"Killxote: El sanguinario hidalgo Don Quixote de La Mancha", en:"Killxote: The Bloodthirsty Gentleman Don Quixote de La Mancha"},
+    short:{es:"Killxote", en:"Killxote"},
+    note:{es:"Sale en noviembre de 2026", en:"Out November 2026"},
+    desc:{es:"Una versión slasher y sangrienta del clásico español, creada con El Torres. Dibujo y color de Jorge Esteban Urabayen.", en:"A bloody slasher take on the classic Spanish tale, created with El Torres. Art and colors by Jorge Esteban Urabayen."}},
+  {id:"anillos", cover:0, flag:true, imgs:["a01","a06","a07","a08","a10","a-lucio","a-kara","a-morsino","a-artax"].map(x => "img/" + x + ".webp"), pub:"Cartem Cómics",
+    title:{es:"Los Anillos de César", en:"Los Anillos de César"},
+    short:{es:"Los Anillos de César", en:"Los Anillos de César"},
+    note:{es:"Llega en 2027", en:"Coming 2027"},
+    desc:{es:"Cómic histórico. Guion, tinta y color de Jorge Esteban Urabayen. Incluye diseños de personajes.", en:"Historical comic. Script, inks and colors by Jorge Esteban Urabayen. Includes character designs."}},
+  {id:"espada", cover:0, imgs:[8,9,10].map(P), pub:"Cascaborra",
+    title:{es:"Espada y Pluma: El Capitán Contreras y Lope de Vega", en:"Espada y Pluma: El Capitán Contreras y Lope de Vega"},
+    short:{es:"Espada y Pluma", en:"Espada y Pluma"},
+    note:{es:"Colección Historia de España en viñetas", en:"Historia de España en viñetas line"},
+    desc:{es:"Dibujo y color. Primer número de la serie del Capitán Contreras para una editorial especializada en cómic histórico. Creado con El Torres.", en:"Art and colors. First issue of the Captain Contreras series for a Spanish publisher specialised in historical comics. Created with El Torres."}},
+  {id:"kull", cover:0, imgs:[11,12,13,14,15].map(P), pub:"Karras Comics",
+    title:{es:"King Kull: Por este hacha", en:"King Kull"},
+    short:{es:"King Kull", en:"King Kull"},
+    note:{es:"Álbum", en:"Album, Spanish title: Por este hacha"},
+    desc:{es:"Dibujo y color. Álbum basado en el personaje King Kull de Robert E. Howard, creado con El Torres.", en:"Art and colors. Album based on Robert E. Howard's character King Kull, created with El Torres."}},
+  {id:"bdt", cover:1, imgs:[16,17,18,19].map(P), pub:"Scout Comics, Chispa Comics",
+    title:{es:"Black Demon Tales", en:"Black Demon Tales"},
+    short:{es:"Black Demon Tales", en:"Black Demon Tales"},
+    note:{es:"Dos números", en:"Two issues"},
+    desc:{es:"Dibujo y color en dos números. Cuatro historias que amplían el universo de la película The Black Demon, con un megalodón ancestral acechando en el Pacífico.", en:"Art and colors on two issues. Four tales expand the universe of The Black Demon film, with an ancient megalodon prowling the Pacific."}},
+  {id:"phantas", cover:0, imgs:[20,21,22].map(P), pub:"Karras Comics",
+    title:{es:"Phantasmagoria 2", en:"Phantasmagoria 2"},
+    short:{es:"Phantasmagoria 2", en:"Phantasmagoria 2"},
+    note:{es:"Terror en blanco y negro", en:"Black-and-white horror"},
+    desc:{es:"Dibujo y color. Terror en blanco y negro con tramas de medio tono.", en:"Art and colors. Black-and-white halftone horror artwork."}},
+  {id:"tmyn", cover:0, imgs:[23,24].map(P), pub:"Moztros",
+    title:{es:"Dime tu nombre", en:"Tell Me Your Name"},
+    short:{es:"Dime tu nombre", en:"Tell Me Your Name"},
+    note:{es:"Con Prime Video, Spotlight Media y Skybound", en:"With Prime Video, Spotlight Media and Skybound"},
+    desc:{es:"Dibujo y color. Novela gráfica basada en la serie Dime tu nombre, con una nueva mirada a través de dos líneas temporales. Creada con El Torres y Valentín Ramón.", en:"Art and colors. Graphic novel based on the Tell Me Your Name TV series, offering a new perspective across two timelines. Created with El Torres and Valentín Ramón."}}
+];
+
+const PINS = [["scan-tulsa","Thulsa Doom B/N"],["throne-scanr","Throne B/N"],["scan-brule","Brule B/N"],["scan-armaor","Armaor B/N"],["pag-2-quijote","Killxote, pág. 2 B/N"],["scan-pag-4","Pág. 4 B/N"],["thulsacolor","Thulsa Doom color"],["throne-color","Throne color"],["brule-blood","Brule color"],["armaor-color","Armaor color"],["portada13","Portada 13"],["portada12","Portada 12"],["portada4","Portada 4"],["andor","Andor"],["hellboy","Hellboy"],["nancy-in-hell","Nancy in Hell"],["ether","Ether"],["arrowsmith","Arrowsmith"],["ari","Ari"],["ari3","Ari 3"],["ari2","Ari 2"],["monkey","Monkey"],["kid","Kid"],["girl","Girl"],["celia","Celia"],["cris","Cris"],["mom","Mom"],["chile","Chile"],["leia","Leia"],["leonard-cohen","Leonard Cohen"],["george-c-romero","George A. Romero"]].map(([f,n]) => ({src:"img/x-" + f + ".webp", name:n}));
+
+const T = {
+  es:{nav_work:"Trabajos",nav_about:"Sobre mí",nav_covers:"Pinups",nav_contact:"Contacto",
+    role:"Jorge Esteban Urabayen, dibujante de cómic",
+    lede:"Guion, dibujo, color, portadas y diseño de personajes. Próximos: Killxote (2026) y Los Anillos de César (2027).",
+    cta_work:"Ver trabajos",cta_contact:"Contactar",work_title:"Trabajos",
+    work_sub:"Siete cómics para editoriales de España y Estados Unidos, del próximo lanzamiento a los ya publicados. Pulsa una viñeta para leer las páginas.",
+    about_title:"Siempre he dibujado",
+    cap1:"Toda la vida. Era el niño del fondo de la clase que dibujaba a todo el mundo sonriendo para sí mismo.",
+    cap2:"Me encantaban los cómics. Ahorraba cada céntimo para el último X-Men, Batman o Spider-Man.",
+    cap3:"Esa pasión nunca se fue.",
+    about_note:"Además de mi carrera como diseñador, ilustrando cubiertas de libros, storyboards y trabajo digital, nunca he dejado de hacer cómic. Aquí reúno trabajos recientes para el mercado editorial europeo e internacional y algunos proyectos personales.",
+    pins_title:"Pinups, portadas y encargos",orig_title:"Originales",orig_note:"Tinta sobre papel, piezas únicas. Pregúntame por su precio y disponibilidad.",prints_title:"Prints",prints_note:"Impresas, firmadas y con tu dedicatoria. A4 25 €, A3 40 €.",sold:"Vendido",ask_orig:"Preguntar por el original",pins_sub:"Originales en tinta, prints firmados e ilustraciones de encargo. Desliza cada fila para ver más.",
+    contact_title:"Trabajemos juntos",
+    contact_sub:"Guion, cómic, portadas y diseño de personajes. Escríbeme para tu próximo proyecto.",
+    copy:"Copiar",copied:"Copiado",copyfail:"Selecciona y copia",
+    foot:"Todas las ilustraciones son propiedad de su autor y sus editoriales.",
+    close:"Cerrar",prev:"Anterior",next:"Siguiente",read:"Leer",pages:n=>n===1?"1 página":n+" páginas",
+    chars:"diseño de personajes",
+    slot:"Imagen pendiente",broken:"No se pudo cargar esta imagen"},
+  en:{nav_work:"Work",nav_about:"About",nav_covers:"Pinups",nav_contact:"Contact",
+    role:"Jorge Esteban Urabayen, comic book artist",
+    lede:"Writing, art, colors, covers and character design. Coming up: Killxote (2026) and Los Anillos de César (2027).",
+    cta_work:"See the work",cta_contact:"Get in touch",work_title:"Work",
+    work_sub:"Seven comics for publishers in Spain and the United States, from upcoming releases to published work. Tap a panel to read the pages.",
+    about_title:"I have drawn all my life",
+    cap1:"I was the kid at the back of the class sketching everyone and grinning to myself.",
+    cap2:"I loved comics. I saved every penny for the latest X-Men, Batman or Spider-Man.",
+    cap3:"That passion never went away.",
+    about_note:"Alongside my career as a designer, illustrating book covers, storyboards and digital work, I have never stopped making comics. This portfolio gathers recent work for the European and international publishing market, plus some personal projects.",
+    pins_title:"Pinups, covers and commissions",orig_title:"Originals",orig_note:"Ink on paper, one of a kind. Ask me about price and availability.",prints_title:"Prints",prints_note:"Printed, signed and dedicated to you. A4 25 €, A3 40 €.",sold:"Sold",ask_orig:"Ask about the original",pins_sub:"Original inks, signed prints and commissioned illustrations. Swipe each row for more.",
+    contact_title:"Let's work together",
+    contact_sub:"Writing, comics, covers and character design. Write to me about your next project.",
+    copy:"Copy",copied:"Copied",copyfail:"Select and copy",
+    foot:"All artwork belongs to its author and publishers.",
+    close:"Close",prev:"Previous",next:"Next",read:"Read",pages:n=>n===1?"1 page":n+" pages",
+    chars:"character design",
+    slot:"Image coming soon",broken:"This image could not load"}
+};
+
+let lang = "es";
+try{ const s = localStorage.getItem("jorgiot-lang"); if(s==="es"||s==="en") lang=s; else if(!(navigator.language||"es").startsWith("es")) lang="en"; }catch(e){ if(!(navigator.language||"es").startsWith("es")) lang="en"; }
+
+const $ = s => document.querySelector(s);
+
+function pic(src, alt, eager){
+  const i = new Image();
+  i.src = src; i.alt = alt; if(!eager) i.loading = "lazy"; i.decoding = "async";
+  i.onerror = () => { const d = slot(T[lang].broken); i.replaceWith(d); };
+  return i;
+}
+function slot(label){ const d = document.createElement("div"); d.className = "slot"; d.textContent = label; return d; }
+
+function renderPage(){
+  const page = $("#page"); page.innerHTML = "";
+  PROJECTS.forEach((p,i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "panel"; b.id = "panel-" + p.id;
+    b.appendChild(pic(p.imgs[p.cover], p.title[lang], i<2));
+    const cap = document.createElement("span"); cap.className = "cap";
+    cap.innerHTML = "<b></b><small></small>";
+    cap.querySelector("b").textContent = p.short[lang];
+    cap.querySelector("small").textContent = p.pub;
+    b.appendChild(cap);
+    if(p.flag){ const f = document.createElement("span"); f.className = "flag"; f.textContent = p.note[lang]; b.appendChild(f); }
+    const o = document.createElement("span"); o.className = "open"; o.textContent = T[lang].read + " " + T[lang].pages(p.imgs.length); b.appendChild(o);
+    b.setAttribute("aria-label", T[lang].read + ": " + p.title[lang]);
+    b.onclick = () => openReader({title:p.title[lang], meta:p.pub + ". " + p.note[lang] + ".", desc:p.desc[lang]}, p.imgs, 0, b);
+    page.appendChild(b);
+  });
+}
+/* Originales: piezas físicas únicas. Añade aquí el id del archivo cuando se venda. */
+const ORIG = new Set(["scan-tulsa","throne-scanr","scan-brule","scan-armaor","pag-2-quijote","scan-pag-4"]);
+const SOLD = new Set(["pag-2-quijote"]);
+PINS.forEach(p => { const id = p.src.slice(6, -5); p.orig = ORIG.has(id); p.sold = SOLD.has(id); });
+function fillStrip(el, test, prefix, title, kind){
+  el.innerHTML = "";
+  const idx = PINS.map((p,i) => i).filter(i => test(PINS[i]));
+  const list = idx.map(i => PINS[i].src), names = idx.map(i => PINS[i].name);
+  idx.forEach((pi,k) => {
+    const x = PINS[pi];
+    const b = document.createElement("button"); b.type = "button"; b.id = prefix + pi;
+    if(x.sold) b.classList.add("is-sold");
+    b.appendChild(pic(x.src, x.name));
+    if(x.sold){ const st = document.createElement("span"); st.className = "sold"; st.textContent = T[lang].sold; b.appendChild(st); }
+    b.setAttribute("aria-label", x.name + (x.sold ? ", " + T[lang].sold : ""));
+    b.onclick = () => openReader({title, meta:"", desc:"", names, idx, kind}, list, k, b);
+    el.appendChild(b);
+  });
+  return idx.length;
+}
+function renderStrip(){
+  const t = T[lang];
+  const n = fillStrip($("#orig-strip"), p => p.orig, "orig-", t.orig_title, "orig");
+  $("#orig-block").hidden = n === 0;
+  fillStrip($("#strip"), p => !p.orig, "pin-", t.prints_title, "print");
+}
+function renderSingles(){
+  const hero = $("#hero-cover .frame"); hero.innerHTML = "";
+  hero.appendChild(pic(IMG.hero, "Killxote", true));
+  const a = $("#about-img"); a.innerHTML = "";
+  a.appendChild(pic(IMG.about, "Killxote, " + T[lang].chars));
+}
+
+/* reader */
+let R = {list:[], i:0, from:null, info:{}};
+function openReader(info, list, i, from){
+  R = {list, i, from, info};
+  $("#r-title").textContent = info.title;
+  $("#r-meta").textContent = info.meta; $("#r-meta").hidden = !info.meta;
+  $("#r-desc").textContent = info.desc; $("#r-desc").hidden = !info.desc;
+  $("#reader").hidden = false; document.body.style.overflow = "hidden";
+  drawReader(); $("#r-close").focus();
+}
+function drawReader(){
+  const st = $("#r-stage"); st.innerHTML = "";
+  const n = R.list.length;
+  const label = R.info.names ? R.info.names[R.i] : R.info.title + " " + (R.i+1);
+  st.appendChild(n ? pic(R.list[R.i], label, true) : slot(T[lang].slot));
+  $("#r-count").textContent = R.info.names ? R.info.names[R.i] : (R.i+1) + " / " + n;
+  $("#r-prev").disabled = R.i<=0; $("#r-next").disabled = R.i>=n-1;
+  const pi = R.info.idx ? R.info.idx[R.i] : -1, pp = PINS[pi];
+  $("#r-order").hidden = !R.info.names || (pp && pp.sold);
+  $("#r-order").textContent = R.info.kind === "orig" ? T[lang].ask_orig : T[lang].order;
+  if(pp && pp.sold) $("#r-count").textContent += ", " + T[lang].sold;
+}
+function closeReader(){ $("#reader").hidden = true; document.body.style.overflow = ""; if(R.from) R.from.focus(); }
+$("#r-close").onclick = closeReader;
+$("#r-prev").onclick = () => { if(R.i>0){R.i--;drawReader();} };
+$("#r-next").onclick = () => { if(R.i<R.list.length-1){R.i++;drawReader();} };
+document.addEventListener("keydown", e => {
+  if($("#reader").hidden) return;
+  if(e.key==="Escape") closeReader();
+  if(e.key==="ArrowRight") $("#r-next").click();
+  if(e.key==="ArrowLeft") $("#r-prev").click();
+});
+let tx=null;
+$("#r-stage").addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, {passive:true});
+$("#r-stage").addEventListener("touchend", e => { if(tx===null) return; const d = e.changedTouches[0].clientX - tx; if(Math.abs(d)>50) (d<0?$("#r-next"):$("#r-prev")).click(); tx=null; });
+
+/* copy */
+document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", () => {
+  const done = t => { b.textContent = t; setTimeout(() => b.textContent = T[lang].copy, 1800); };
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); done(T[lang].copyfail); };
+  try{ navigator.clipboard.writeText(b.dataset.copy).then(() => done(T[lang].copied), sel); }catch(e){ sel(); }
+}));
+
+/* i18n */
+/* commissions */
+const CT = {
+  es:{nav_comm:"Encargos",c_title:"Encargos",
+    c_sub:"Dibujo original por encargo, en papel o digital. Precios orientativos para uso personal, en formato A4 y con fondo blanco.",
+    x1_t:"Más personajes",x1_p:"Cada personaje extra suma entre un 50 % y un 75 % de la tarifa base.",
+    x2_t:"Fondos",x2_p:"El fondo blanco no tiene coste. Un fondo trabajado añade de 20 € a 150 € según su complejidad.",
+    x3_t:"A3 o comic board",x3_p:"Pasar de A4 a A3 o a papel de 11x17\" sube el precio entre un 30 % y un 50 %.",
+    x4_t:"Blank covers",x4_p:"Sobre cómic oficial con portada en blanco. Busto entintado de 50 € a 90 €, cuerpo entero de 120 € a 250 €.",
+    rights:"<b>Uso comercial.</b> Estas tarifas son para uso personal (colección, decoración). Para portadas de discos, merchandising, carteles o banners, la cesión de derechos se presupuesta aparte y suele duplicar o triplicar el precio.",
+m_custom:"Encargo nuevo",m_print:"Print personalizado",f_deliv:"Entrega",o_orig:"Original en papel",o_file:"Archivo digital",o_p4:"Digital + print A4",o_p3:"Digital + print A3",
+    deliv_help:"Te envío el archivo en alta resolución y, si lo eliges, un print firmado y dedicado. El print suma 20 € en A4 o 35 € en A3. Envío aparte.",
+    print_intro:"Elige una de mis ilustraciones y la imprimo firmada y con tu dedicatoria.",f_pic:"Ilustración",f_size:"Tamaño",o_pa4:"A4, 25 €",o_pa3:"A3, 40 €",f_qty:"Copias",f_ded:"Dedicatoria",ph_ded:"Para Lucía, con cariño",
+    fine_print:"Precio total de los prints, firmados y dedicados. Envío aparte.",
+    m_hip:"Hola, Jorge. Me gustaría pedirte un print personalizado.",m_pic:"Ilustración",m_size:"Tamaño",m_qty:"Copias",m_ded:"Dedicatoria",m_dedph:"[texto de la dedicatoria]",m_deliv:"Entrega",
+    subject_p:"Print personalizado",order:"Pedir print",
+    b_title:"Pide tu encargo",f_support:"Soporte",o_a4:"A4",o_a3:"A3 / comic board",o_blank:"Blank cover",
+    f_frame:"Encuadre",o_bust:"Busto",o_half:"Medio cuerpo",o_full:"Cuerpo entero",
+    f_finish:"Acabado",o_f0:"Lápiz / tinta rápida",o_f1:"Tinta acabada",o_f2:"Color",
+    blank_help:"En blank covers el precio ya incluye el acabado: busto entintado o cuerpo entero en tinta o color. Medio cuerpo no está disponible.",
+    f_chars:"Personajes",f_bg:"Fondo",o_bg0:"Blanco",o_bg1:"Sencillo",o_bg2:"Trabajado",
+    f_use:"Uso",o_personal:"Personal",o_commercial:"Comercial",
+    f_name:"Tu nombre",f_idea:"Tu idea",ph_idea:"Personaje, pose, referencias, fecha que te interesa...",
+    q_label:"Estimación",q_msg:"Tu mensaje",q_copy:"Copiar mensaje",q_open:"Abrir correo",
+    q_how:"Envíalo a esta dirección y te respondo con el precio cerrado y los plazos:",
+    fine_p:"Precio orientativo. Te confirmo el importe final cuando vea tu idea.",
+    fine_c:"Incluye la cesión de derechos comerciales (entre dos y tres veces la tarifa). Te confirmo el importe final cuando vea el uso.",
+    th0:"Encuadre",a:"a",
+    m_hi:"Hola, Jorge. Me gustaría encargarte una ilustración.",m_name:"Nombre",m_support:"Soporte",m_frame:"Encuadre",m_finish:"Acabado",m_chars:"Personajes",m_bg:"Fondo",m_use:"Uso",m_idea:"Idea",m_est:"Estimación de la web",m_you:"[tu nombre]",m_ideaph:"[describe tu idea]",
+    subject:"Encargo de ilustración",copied:"Copiado"},
+  en:{nav_comm:"Commissions",c_title:"Commissions",
+    c_sub:"Original art on commission, on paper or digital. Guide prices for personal use, A4 size with a white background.",
+    x1_t:"More characters",x1_p:"Each extra character adds 50% to 75% of the base rate.",
+    x2_t:"Backgrounds",x2_p:"A white background is free. A detailed background adds 20 € to 150 € depending on complexity.",
+    x3_t:"A3 or comic board",x3_p:"Moving from A4 to A3 or 11x17\" board raises the price by 30% to 50%.",
+    x4_t:"Blank covers",x4_p:"On official blank-cover comics. Inked bust 50 € to 90 €, full body 120 € to 250 €.",
+    rights:"<b>Commercial use.</b> These rates are for personal use (collecting, decoration). For album covers, merchandise, posters or banners, usage rights are quoted separately and usually double or triple the price.",
+m_custom:"New commission",m_print:"Custom print",f_deliv:"Delivery",o_orig:"Original on paper",o_file:"Digital file",o_p4:"Digital + A4 print",o_p3:"Digital + A3 print",
+    deliv_help:"I send you the high-resolution file and, if you choose it, a signed print with a personal dedication. The print adds 20 € for A4 or 35 € for A3. Shipping not included.",
+    print_intro:"Pick one of my illustrations and I will print it, signed and with your dedication.",f_pic:"Illustration",f_size:"Size",o_pa4:"A4, 25 €",o_pa3:"A3, 40 €",f_qty:"Copies",f_ded:"Dedication",ph_ded:"To Lucy, with love",
+    fine_print:"Total for the prints, signed and dedicated. Shipping not included.",
+    m_hip:"Hi Jorge, I would like to order a custom print.",m_pic:"Illustration",m_size:"Size",m_qty:"Copies",m_ded:"Dedication",m_dedph:"[dedication text]",m_deliv:"Delivery",
+    subject_p:"Custom print",order:"Order a print",
+    b_title:"Request a commission",f_support:"Paper",o_a4:"A4",o_a3:"A3 / comic board",o_blank:"Blank cover",
+    f_frame:"Framing",o_bust:"Bust",o_half:"Half body",o_full:"Full body",
+    f_finish:"Finish",o_f0:"Pencil / quick inks",o_f1:"Finished inks",o_f2:"Color",
+    blank_help:"Blank cover prices already include the finish: inked bust, or full body in inks or color. Half body is not available.",
+    f_chars:"Characters",f_bg:"Background",o_bg0:"White",o_bg1:"Simple",o_bg2:"Detailed",
+    f_use:"Use",o_personal:"Personal",o_commercial:"Commercial",
+    f_name:"Your name",f_idea:"Your idea",ph_idea:"Character, pose, references, preferred date...",
+    q_label:"Estimate",q_msg:"Your message",q_copy:"Copy message",q_open:"Open email",
+    q_how:"Send it to this address and I will reply with a final price and timing:",
+    fine_p:"Guide price. I will confirm the final amount once I see your idea.",
+    fine_c:"Includes commercial usage rights (two to three times the rate). I will confirm the final amount once I know the use.",
+    th0:"Framing",a:"to",
+    m_hi:"Hi Jorge, I would like to commission an illustration.",m_name:"Name",m_support:"Format",m_frame:"Framing",m_finish:"Finish",m_chars:"Characters",m_bg:"Background",m_use:"Use",m_idea:"Idea",m_est:"Website estimate",m_you:"[your name]",m_ideaph:"[describe your idea]",
+    subject:"Illustration commission",copied:"Copied"}
+};
+Object.keys(CT).forEach(l => Object.assign(T[l], CT[l]));
+
+const RATES = {bust:[[40,70],[70,110],[120,180]], half:[[70,110],[110,160],[180,260]], full:[[100,150],[150,230],[250,400]]};
+const BLANK = {bust:[50,90], full:[120,250]};
+const BG = {none:[0,0], simple:[20,60], full:[60,150]};
+let chars = 1;
+
+function renderRates(){
+  const r = $("#rates"); r.innerHTML = "";
+  const t = T[lang];
+  const add = (cls, html, role) => { const d = document.createElement("div"); d.className = cls; if(role) d.setAttribute("role", role); d.innerHTML = html; r.appendChild(d); return d; };
+  add("th corner", t.th0, "columnheader");
+  [t.o_f0, t.o_f1, t.o_f2].forEach(x => add("th", x, "columnheader"));
+  ["bust","half","full"].forEach(k => {
+    add("rl", t["o_"+k], "rowheader");
+    RATES[k].forEach((v,i) => {
+      const c = add("cell", "", "cell"); c.id = "rate-" + k + "-" + i;
+      const b = document.createElement("b"); b.textContent = v[0] + " " + t.a + " " + v[1] + (k==="full"&&i===2 ? "+" : "") + " €";
+      const s = document.createElement("small"); s.textContent = [t.o_f0, t.o_f1, t.o_f2][i];
+      c.append(s, b);
+    });
+  });
+  updateQuote();
+}
+
+const r5 = n => Math.round(n/5)*5;
+function val(name){ const el = document.querySelector('input[name="'+name+'"]:checked'); return el ? el.value : null; }
+
+let pqty = 1;
+const PPRICE = {a4:25, a3:40};
+const DELIV = {orig:0, file:0, p4:20, p3:35};
+const txt = name => { const el = document.querySelector('input[name="'+name+'"]:checked'); return el ? el.nextElementSibling.textContent : ""; };
+
+function fillPicSelect(){
+  const sel = $("#p-pic"); const cur = sel.value;
+  sel.innerHTML = "";
+  PINS.forEach((p,i) => { if(p.orig) return; const o = document.createElement("option"); o.value = String(i); o.textContent = p.name; sel.appendChild(o); });
+  sel.value = cur && sel.querySelector('option[value="' + cur + '"]') ? cur : sel.querySelector("option").value;
+}
+function showPicPreview(){
+  const p = PINS[+$("#p-pic").value || 0]; const box = $("#p-prev");
+  box.innerHTML = ""; box.appendChild(pic(p.src, p.name));
+}
+
+function updateQuote(){
+  const t = T[lang];
+  const mode = val("mode");
+  $("#f-custom").hidden = mode !== "custom"; $("#f-print").hidden = mode !== "print";
+  document.querySelectorAll("#rates .cell").forEach(c => c.classList.remove("on"));
+  const name = $("#c-name").value.trim() || t.m_you;
+  let price, fine, lines;
+
+  if(mode === "print"){
+    const size = val("psize");
+    const p = PINS[+$("#p-pic").value || 0];
+    const total = PPRICE[size] * pqty;
+    const ded = $("#c-ded").value.trim() || t.m_dedph;
+    price = total + " €";
+    fine = t.fine_print;
+    $("#pq-out").textContent = pqty;
+    $("#pq-minus").disabled = pqty <= 1; $("#pq-plus").disabled = pqty >= 10;
+    lines = [t.m_hip, "", t.m_name + ": " + name, t.m_pic + ": " + p.name, t.m_size + ": " + size.toUpperCase(), t.m_qty + ": " + pqty, t.m_ded + ": " + ded, "", t.m_est + ": " + price];
+  } else {
+    const deliv = val("deliv");
+    const physical = deliv === "orig";
+    $("#deliv-help").hidden = physical;
+    // digital delivery: no paper size or blank cover
+    $("#s-a3").disabled = !physical; $("#s-blank").disabled = !physical;
+    if(!physical && val("support") !== "a4") $("#s-a4").checked = true;
+    const support = val("support");
+    const blank = support === "blank";
+    const half = $("#fr-half");
+    half.disabled = blank;
+    if(blank && half.checked) $("#fr-bust").checked = true;
+    $("#fs-finish").disabled = blank; $("#blank-help").hidden = !blank;
+    const frame = val("frame"), finish = +val("finish"), bg = val("bg"), use = val("use");
+
+    let [lo, hi] = blank ? BLANK[frame] : RATES[frame][finish];
+    const extra = chars - 1;
+    lo = lo * (1 + 0.5*extra); hi = hi * (1 + 0.75*extra);
+    if(support === "a3"){ lo *= 1.3; hi *= 1.5; }
+    lo += BG[bg][0]; hi += BG[bg][1];
+    if(use === "commercial"){ lo *= 2; hi *= 3; }
+    lo = r5(lo) + DELIV[deliv]; hi = r5(hi) + DELIV[deliv];
+
+    if(!blank){ const c = $("#rate-" + frame + "-" + finish); if(c) c.classList.add("on"); }
+    price = lo + " " + t.a + " " + hi + " €";
+    fine = use === "commercial" ? t.fine_c : t.fine_p;
+    $("#ch-out").textContent = chars;
+    $("#ch-minus").disabled = chars <= 1; $("#ch-plus").disabled = chars >= 6;
+    const idea = $("#c-idea").value.trim() || t.m_ideaph;
+    lines = [
+      t.m_hi, "",
+      t.m_name + ": " + name,
+      t.m_deliv + ": " + txt("deliv"),
+      ...(physical ? [t.m_support + ": " + txt("support")] : []),
+      t.m_frame + ": " + txt("frame"),
+      ...(blank ? [] : [t.m_finish + ": " + txt("finish")]),
+      t.m_chars + ": " + chars,
+      t.m_bg + ": " + txt("bg"),
+      t.m_use + ": " + txt("use"),
+      "", t.m_idea + ": " + idea, "",
+      t.m_est + ": " + price
+    ];
+  }
+  $("#q-price").textContent = price;
+  $("#q-fine").textContent = fine;
+  const msg = lines.join("\n");
+  $("#q-msg").textContent = msg;
+  $("#q-mail").href = "mailto:jorgiot@gmail.com?subject=" + encodeURIComponent(mode === "print" ? t.subject_p : t.subject) + "&body=" + encodeURIComponent(msg);
+}
+
+$("#p-pic").addEventListener("change", showPicPreview);
+$("#pq-minus").onclick = () => { if(pqty > 1){ pqty--; updateQuote(); } };
+$("#pq-plus").onclick = () => { if(pqty < 10){ pqty++; updateQuote(); } };
+function orderPrint(i){
+  closeReader();
+  $("#m-print").checked = true; $("#p-pic").value = String(i);
+  showPicPreview(); updateQuote();
+  $("#builder").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  $("#p-pic").focus({preventScroll:true});
+}
+$("#r-order").onclick = () => {
+  if(R.info.kind === "orig"){
+    closeReader();
+    $("#contacto").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+    return;
+  }
+  orderPrint(R.info.idx ? R.info.idx[R.i] : R.i);
+};
+
+$("#builder").addEventListener("change", updateQuote);
+$("#builder").addEventListener("input", updateQuote);
+$("#builder").addEventListener("submit", e => e.preventDefault());
+$("#ch-minus").onclick = () => { if(chars > 1){ chars--; updateQuote(); } };
+$("#ch-plus").onclick = () => { if(chars < 6){ chars++; updateQuote(); } };
+$("#q-copy").addEventListener("click", () => {
+  const b = $("#q-copy");
+  const done = t => { b.textContent = t; setTimeout(() => b.textContent = T[lang].q_copy, 1800); };
+  const sel = () => { const r = document.createRange(); r.selectNodeContents($("#q-msg")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); done(T[lang].copyfail); };
+  try{ navigator.clipboard.writeText($("#q-msg").textContent).then(() => done(T[lang].copied), sel); }catch(e){ sel(); }
+});
+
+function setLang(l){
+  lang = l; document.documentElement.lang = l;
+  try{ localStorage.setItem("jorgiot-lang", l); }catch(e){}
+  document.querySelectorAll("[data-i18n]").forEach(el => { const v = T[l][el.dataset.i18n]; if(typeof v === "string") el.textContent = v; });
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang===l));
+  document.querySelectorAll("[data-i18n-html]").forEach(el => { el.innerHTML = T[l][el.dataset.i18nHtml]; });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => { el.placeholder = T[l][el.dataset.i18nPh]; });
+  renderPage(); renderStrip(); renderSingles(); fillPicSelect(); showPicPreview(); renderRates();
+}
+document.querySelectorAll(".lang button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
+setLang(lang);
+</script>
+
+</body>
+</html>
