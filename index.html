@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Jorge Esteban Urabayen, Jorgiot. Dibujante de cómic: guion, dibujo, color, portadas, originales, prints y encargos.">
+<meta name="description" content="Jorge Esteban Urabayen, Jorgiot. Dibujante y autor de cómics: guion, dibujo, color, portadas, originales, prints y encargos.">
 <style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 <title>Jorgiot Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -209,6 +209,11 @@ select.txt{appearance:auto;cursor:pointer}
 .quote .mailto span{user-select:all}
 @media (max-width:899px){.builder{grid-template-columns:1fr}.quote{position:static}}
 
+.bio{margin-top:32px;max-width:62ch;display:grid;gap:12px}
+.bio h3{font:900 clamp(28px,3vw,40px)/.9 var(--display);text-transform:uppercase;margin:0 0 4px}
+.bio p{margin:0;color:var(--ink-soft)}
+.bio a,.rlink{color:var(--accent);font-weight:700;text-underline-offset:3px}
+.rlink{font-size:14px;letter-spacing:.02em;justify-self:start}
 /* reader */
 .reader{position:fixed;inset:0;z-index:var(--z-modal);background:color-mix(in srgb,var(--paper) 96%,transparent);display:grid;grid-template-rows:auto 1fr auto;padding:calc(env(safe-area-inset-top,0px) + 12px) var(--gutter) calc(env(safe-area-inset-bottom,0px) + 16px)}
 .reader[hidden]{display:none}
@@ -311,7 +316,13 @@ body,.top,.contact,footer{transition:background-color .35s var(--ease),color .35
           <p data-i18n="cap2">Y me encantaban los cómics. Ahorraba cada céntimo para comprar el último número de X-Men, Batman o la nueva aventura de tu amigo y vecino Spider-Man.</p>
           <p class="loud" data-i18n="cap3">Esa pasión nunca se fue.</p>
         </div>
-        <p class="note" data-i18n="about_note">Como diseñador he ilustrado cubiertas de libros, storyboards y mucho trabajo digital, pero nunca he dejado de hacer cómic. Aquí reúno mis últimos trabajos para el mercado editorial y algunos proyectos personales.</p>
+        <div class="bio">
+          <h3 data-i18n="bio_title">Trayectoria</h3>
+          <p data-i18n-html="bio1"></p>
+          <p data-i18n-html="bio2"></p>
+          <p data-i18n-html="bio3"></p>
+          <p data-i18n-html="bio4"></p>
+        </div>
       </div>
     </div>
   </section>
@@ -496,7 +507,7 @@ body,.top,.contact,footer{transition:background-color .35s var(--ease),color .35
 
 <div class="reader" id="reader" hidden role="dialog" aria-modal="true" aria-labelledby="r-title">
   <header>
-    <div class="rt"><b id="r-title"></b><span class="meta" id="r-meta"></span><span class="desc" id="r-desc"></span></div>
+    <div class="rt"><b id="r-title"></b><span class="meta" id="r-meta"></span><span class="desc" id="r-desc"></span><a class="rlink" id="r-link" href="#" target="_blank" rel="noopener" hidden></a></div>
     <button type="button" class="ibtn x" id="r-close" data-i18n="close">Cerrar</button>
   </header>
   <div class="stage" id="r-stage"></div>
@@ -524,7 +535,7 @@ const PROJECTS = [
     short:{es:"Los Anillos de César", en:"Los Anillos de César"},
     note:{es:"Llega en 2027", en:"Coming 2027"},
     desc:{es:"Cómic histórico. Guion, tinta y color de Jorge Esteban Urabayen. Incluye diseños de personajes.", en:"Historical comic. Script, inks and colors by Jorge Esteban Urabayen. Includes character designs."}},
-  {id:"espada", cover:0, imgs:["p08","e-8","e-13","e-15","e-17","e-19","e-21","e-22","e-24","e-33","e-47","e-50"].map(x => "img/" + x + ".webp"), pub:"Cascaborra",
+  {id:"espada", cover:0, link:"https://jorgiot.github.io/espada-y-pluma/", imgs:["p08","e-8","e-13","e-15","e-17","e-19","e-21","e-22","e-24","e-33","e-47","e-50"].map(x => "img/" + x + ".webp"), pub:"Cascaborra",
     title:{es:"Espada y Pluma: El Capitán Contreras y Lope de Vega", en:"Espada y Pluma: El Capitán Contreras y Lope de Vega"},
     short:{es:"Espada y Pluma", en:"Espada y Pluma"},
     note:{es:"Colección Historia de España en viñetas", en:"Historia de España en viñetas line"},
@@ -564,6 +575,7 @@ const T = {
     cap1:"Toda la vida. Era el niño del fondo de la clase que dibujaba a todo el mundo sonriendo para sí mismo.",
     cap2:"Me encantaban los cómics. Ahorraba cada céntimo para el último X-Men, Batman o Spider-Man.",
     cap3:"Esa pasión nunca se fue.",
+    bio1:"Soy Jorge Esteban Urabayen, Jorgiot, dibujante y autor de cómics. Compagino la historieta con el diseño, las cubiertas de libros y el storyboard.",bio2:"En 2024 publicamos <a href=\"https://jorgiot.github.io/espada-y-pluma/\" target=\"_blank\" rel=\"noopener\">Espada y Pluma</a> (Cascaborra), con guion de El Torres, sobre la amistad entre Lope de Vega y el capitán Alonso de Contreras en 1624.",bio3:"Para el mercado estadounidense he trabajado en <i>Black Demon Tales</i> y <i>Killswitch</i> con Scout Comics, y en Italia en <i>Giallo</i> con Leviathan Labs. También participé en <i>Alcatraz, de la A a la Z</i>, obra colectiva nacida en el confinamiento de 2020, y en la novela gráfica <i>Dime tu nombre</i>, con El Torres y Valentín Ramón.",bio4:"Ahora preparo <i>Killxote</i> (Tomos y Grapas), <i>Por este hacha</i> y <i>Phantasmagoria 2</i> (Karras Comics) y <i>Los Anillos de César</i> (Cartem Cómics), donde además escribo el guion.",bio_title:"Trayectoria",site_link:"Web del álbum",
     about_note:"Además de mi carrera como diseñador, ilustrando cubiertas de libros, storyboards y trabajo digital, nunca he dejado de hacer cómic. Aquí reúno trabajos recientes para el mercado editorial europeo e internacional y algunos proyectos personales.",
     pins_title:"Pinups, portadas y encargos",orig_title:"Originales",orig_note:"Tinta sobre papel, piezas únicas. Pregúntame por su precio y disponibilidad.",prints_title:"Prints",prints_note:"Impresas, firmadas y con tu dedicatoria. A4 25 €, A3 40 €.",sold:"Vendido",ask_orig:"Preguntar por el original",pins_sub:"Originales en tinta, prints firmados e ilustraciones de encargo. Desliza cada fila para ver más.",
     contact_title:"Trabajemos juntos",
@@ -582,6 +594,7 @@ const T = {
     cap1:"I was the kid at the back of the class sketching everyone and grinning to myself.",
     cap2:"I loved comics. I saved every penny for the latest X-Men, Batman or Spider-Man.",
     cap3:"That passion never went away.",
+    bio1:"I'm Jorge Esteban Urabayen, Jorgiot, a comic book artist and author. I combine comics with design, book covers and storyboarding.",bio2:"In 2024 we published <a href=\"https://jorgiot.github.io/espada-y-pluma/\" target=\"_blank\" rel=\"noopener\">Espada y Pluma</a> (Cascaborra), written by El Torres, about the friendship between Lope de Vega and Captain Alonso de Contreras in 1624.",bio3:"For the US market I worked on <i>Black Demon Tales</i> and <i>Killswitch</i> with Scout Comics, and in Italy on <i>Giallo</i> with Leviathan Labs. I also took part in <i>Alcatraz, de la A a la Z</i>, a collective book born during the 2020 lockdown, and in the graphic novel <i>Tell Me Your Name</i>, with El Torres and Valentín Ramón.",bio4:"I'm currently working on <i>Killxote</i> (Tomos y Grapas), <i>Por este hacha</i> and <i>Phantasmagoria 2</i> (Karras Comics) and <i>Los Anillos de César</i> (Cartem Cómics), which I also write.",bio_title:"Career",site_link:"Album website",
     about_note:"Alongside my career as a designer, illustrating book covers, storyboards and digital work, I have never stopped making comics. This portfolio gathers recent work for the European and international publishing market, plus some personal projects.",
     pins_title:"Pinups, covers and commissions",orig_title:"Originals",orig_note:"Ink on paper, one of a kind. Ask me about price and availability.",prints_title:"Prints",prints_note:"Printed, signed and dedicated to you. A4 25 €, A3 40 €.",sold:"Sold",ask_orig:"Ask about the original",pins_sub:"Original inks, signed prints and commissioned illustrations. Swipe each row for more.",
     contact_title:"Let's work together",
@@ -621,7 +634,7 @@ function renderPage(){
     if(p.flag){ const f = document.createElement("span"); f.className = "flag"; f.textContent = (p.flagText || p.note)[lang]; b.appendChild(f); }
     const o = document.createElement("span"); o.className = "open"; o.textContent = T[lang].read + " " + T[lang].pages(p.imgs.length); b.appendChild(o);
     b.setAttribute("aria-label", T[lang].read + ": " + p.title[lang]);
-    b.onclick = () => openReader({title:p.title[lang], meta:p.pub + ". " + p.note[lang] + ".", desc:p.desc[lang]}, p.imgs, 0, b);
+    b.onclick = () => openReader({title:p.title[lang], meta:p.pub + ". " + p.note[lang] + ".", desc:p.desc[lang], link:p.link}, p.imgs, 0, b);
     page.appendChild(b);
   });
 }
@@ -665,6 +678,7 @@ function openReader(info, list, i, from){
   $("#r-title").textContent = info.title;
   $("#r-meta").textContent = info.meta; $("#r-meta").hidden = !info.meta;
   $("#r-desc").textContent = info.desc; $("#r-desc").hidden = !info.desc;
+  $("#r-link").hidden = !info.link; if(info.link){ $("#r-link").href = info.link; $("#r-link").textContent = T[lang].site_link + " ↗"; }
   $("#reader").hidden = false; document.body.style.overflow = "hidden";
   drawReader(); $("#r-close").focus();
 }
@@ -771,6 +785,7 @@ T.fr = {nav_work:"Travaux",nav_about:"À propos",nav_covers:"Pin-ups",nav_contac
   cap1:"Toute ma vie. J'étais le gamin au fond de la classe qui dessinait tout le monde en souriant tout seul.",
   cap2:"J'adorais les comics. J'économisais chaque centime pour le dernier X-Men, Batman ou Spider-Man.",
   cap3:"Cette passion ne m'a jamais quitté.",
+  bio1:"Je suis Jorge Esteban Urabayen, Jorgiot, dessinateur et auteur de bande dessinée. J'alterne la BD avec le graphisme, les couvertures de livres et le storyboard.",bio2:"En 2024, nous avons publié <a href=\"https://jorgiot.github.io/espada-y-pluma/\" target=\"_blank\" rel=\"noopener\">Espada y Pluma</a> (Cascaborra), scénarisé par El Torres, sur l'amitié entre Lope de Vega et le capitaine Alonso de Contreras en 1624.",bio3:"Pour le marché américain, j'ai travaillé sur <i>Black Demon Tales</i> et <i>Killswitch</i> avec Scout Comics, et en Italie sur <i>Giallo</i> avec Leviathan Labs. J'ai aussi participé à <i>Alcatraz, de la A a la Z</i>, ouvrage collectif né pendant le confinement de 2020, et au roman graphique <i>Dime tu nombre</i>, avec El Torres et Valentín Ramón.",bio4:"Je prépare actuellement <i>Killxote</i> (Tomos y Grapas), <i>Por este hacha</i> et <i>Phantasmagoria 2</i> (Karras Comics) ainsi que <i>Los Anillos de César</i> (Cartem Cómics), dont j'écris aussi le scénario.",bio_title:"Parcours",site_link:"Site de l'album",
   about_note:"Parallèlement à ma carrière de graphiste, où j'ai illustré des couvertures de livres, des storyboards et beaucoup de travail numérique, je n'ai jamais cessé de faire de la bande dessinée. Ce portfolio réunit des travaux récents pour le marché éditorial européen et international, ainsi que quelques projets personnels.",
   pins_title:"Pin-ups, couvertures et commandes",orig_title:"Originaux",orig_note:"Encre sur papier, pièces uniques. Demandez-moi le prix et la disponibilité.",prints_title:"Tirages",prints_note:"Imprimés, signés et dédicacés. A4 25 €, A3 40 €.",sold:"Vendu",ask_orig:"Demander l'original",pins_sub:"Encres originales, tirages signés et illustrations sur commande. Faites défiler chaque rangée.",
   contact_title:"Travaillons ensemble",
