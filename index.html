@@ -209,6 +209,9 @@ select.txt{appearance:auto;cursor:pointer}
 .quote .mailto span{user-select:all}
 @media (max-width:899px){.builder{grid-template-columns:1fr}.quote{position:static}}
 
+.bio-head{display:flex;align-items:center;gap:18px;margin-bottom:4px}
+.bio-head h3{margin:0}
+.avatar{width:clamp(96px,11vw,132px);height:auto;aspect-ratio:1;object-fit:cover;border:3px solid var(--line);box-shadow:6px 6px 0 var(--accent)}
 .bio{margin-top:32px;max-width:62ch;display:grid;gap:12px}
 .bio h3{font:900 clamp(28px,3vw,40px)/.9 var(--display);text-transform:uppercase;margin:0 0 4px}
 .bio p{margin:0;color:var(--ink-soft)}
@@ -317,7 +320,10 @@ body,.top,.contact,footer{transition:background-color .35s var(--ease),color .35
           <p class="loud" data-i18n="cap3">Esa pasión nunca se fue.</p>
         </div>
         <div class="bio">
-          <h3 data-i18n="bio_title">Trayectoria</h3>
+          <div class="bio-head">
+            <img class="avatar" src="img/perfil.webp" alt="Jorge Esteban Urabayen, Jorgiot" width="600" height="600" loading="lazy">
+            <h3 data-i18n="bio_title">Trayectoria</h3>
+          </div>
           <p data-i18n-html="bio1"></p>
           <p data-i18n-html="bio2"></p>
           <p data-i18n-html="bio3"></p>
