@@ -166,6 +166,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
 @media (max-width:559px){.extras{grid-template-columns:1fr}}
 .rights{margin:clamp(24px,3vw,36px) 0 0;padding:16px 18px;border:3px solid var(--line);background:radial-gradient(var(--dot) 28%,transparent 30%) 0 0/10px 10px,var(--paper);max-width:80ch}
 .rights b{font-weight:700}
+.rights.pay{margin-top:12px}
+.paynote{font-weight:700;color:var(--ink)}
 
 .builder{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,56px);margin-top:clamp(48px,6vw,80px);align-items:start}
 .builder h3{grid-column:1/-1;font:900 clamp(40px,5.5vw,72px)/.9 var(--display);text-transform:uppercase;margin:0}
@@ -370,6 +372,7 @@ body,.top,.contact,footer{transition:background-color .35s var(--ease),color .35
         <div><b data-i18n="x4_t">Blank covers</b><p data-i18n="x4_p">Sobre cómic oficial con portada en blanco. Busto entintado de 50 € a 90 €, cuerpo entero de 120 € a 250 €.</p></div>
       </div>
       <p class="rights" data-i18n-html="rights"><b>Uso comercial.</b> Estas tarifas son para uso personal (colección, decoración). Para portadas de discos, merchandising, carteles o banners, la cesión de derechos se presupuesta aparte y suele duplicar o triplicar el precio.</p>
+      <p class="rights pay" data-i18n-html="pay"><b>Pago.</b> Se cobra el 50 % por adelantado para empezar el encargo. Todas las transacciones se hacen siempre por PayPal.</p>
 
       <form class="builder" id="builder" novalidate>
         <h3 data-i18n="b_title">Pide tu encargo</h3>
@@ -489,6 +492,7 @@ body,.top,.contact,footer{transition:background-color .35s var(--ease),color .35
             <button type="button" class="btn btn-primary" id="q-copy" data-i18n="q_copy">Copiar mensaje</button>
             <a class="btn btn-ghost" id="q-mail" href="mailto:jorgiot@gmail.com" data-i18n="q_open">Abrir correo</a>
           </div>
+          <p class="fine paynote" data-i18n="q_pay">50 % por adelantado. Pago siempre por PayPal.</p>
           <p class="fine" data-i18n="q_how">Envíalo a esta dirección y te respondo con el precio cerrado y los plazos:</p>
           <p class="mailto"><span>jorgiot@gmail.com</span></p>
         </aside>
@@ -730,6 +734,7 @@ const CT = {
     x2_t:"Fondos",x2_p:"El fondo blanco no tiene coste. Un fondo trabajado añade de 20 € a 150 € según su complejidad.",
     x3_t:"A3 o comic board",x3_p:"Pasar de A4 a A3 o a papel de 11x17\" sube el precio entre un 30 % y un 50 %.",
     x4_t:"Blank covers",x4_p:"Sobre cómic oficial con portada en blanco. Busto entintado de 50 € a 90 €, cuerpo entero de 120 € a 250 €.",
+    pay:"<b>Pago.</b> Se cobra el 50 % por adelantado para empezar el encargo. Todas las transacciones se hacen siempre por PayPal.",q_pay:"50 % por adelantado. Pago siempre por PayPal.",
     rights:"<b>Uso comercial.</b> Estas tarifas son para uso personal (colección, decoración). Para portadas de discos, merchandising, carteles o banners, la cesión de derechos se presupuesta aparte y suele duplicar o triplicar el precio.",
 m_custom:"Encargo nuevo",m_print:"Print personalizado",f_deliv:"Entrega",o_orig:"Original en papel",o_file:"Archivo digital",o_p4:"Digital + print A4",o_p3:"Digital + print A3",
     deliv_help:"Te envío el archivo en alta resolución y, si lo eliges, un print firmado y dedicado. El print suma 20 € en A4 o 35 € en A3. Envío aparte.",
@@ -757,6 +762,7 @@ m_custom:"Encargo nuevo",m_print:"Print personalizado",f_deliv:"Entrega",o_orig:
     x2_t:"Backgrounds",x2_p:"A white background is free. A detailed background adds 20 € to 150 € depending on complexity.",
     x3_t:"A3 or comic board",x3_p:"Moving from A4 to A3 or 11x17\" board raises the price by 30% to 50%.",
     x4_t:"Blank covers",x4_p:"On official blank-cover comics. Inked bust 50 € to 90 €, full body 120 € to 250 €.",
+    pay:"<b>Payment.</b> A 50% deposit is charged before I start a commission. All transactions are always made through PayPal.",q_pay:"50% deposit up front. Payment always through PayPal.",
     rights:"<b>Commercial use.</b> These rates are for personal use (collecting, decoration). For album covers, merchandise, posters or banners, usage rights are quoted separately and usually double or triple the price.",
 m_custom:"New commission",m_print:"Custom print",f_deliv:"Delivery",o_orig:"Original on paper",o_file:"Digital file",o_p4:"Digital + A4 print",o_p3:"Digital + A3 print",
     deliv_help:"I send you the high-resolution file and, if you choose it, a signed print with a personal dedication. The print adds 20 € for A4 or 35 € for A3. Shipping not included.",
@@ -807,6 +813,7 @@ T.fr = {nav_work:"Travaux",nav_about:"À propos",nav_covers:"Pin-ups",nav_contac
   x2_t:"Décors",x2_p:"Le fond blanc est gratuit. Un décor travaillé ajoute de 20 € à 150 € selon sa complexité.",
   x3_t:"A3 ou comic board",x3_p:"Passer de l'A4 à l'A3 ou au papier 11x17\" augmente le prix de 30 % à 50 %.",
   x4_t:"Blank covers",x4_p:"Sur un comic officiel à couverture blanche. Buste encré de 50 € à 90 €, en pied de 120 € à 250 €.",
+  pay:"<b>Paiement.</b> Un acompte de 50 % est demandé avant de commencer la commande. Toutes les transactions se font toujours par PayPal.",q_pay:"Acompte de 50 %. Paiement toujours par PayPal.",
   rights:"<b>Usage commercial.</b> Ces tarifs concernent un usage personnel (collection, décoration). Pour des pochettes de disques, du merchandising, des affiches ou des bannières, la cession de droits est chiffrée à part et double ou triple généralement le prix.",
   m_custom:"Nouvelle commande",m_print:"Tirage personnalisé",f_deliv:"Livraison",o_orig:"Original sur papier",o_file:"Fichier numérique",o_p4:"Numérique + tirage A4",o_p3:"Numérique + tirage A3",
   deliv_help:"Je vous envoie le fichier en haute résolution et, si vous le souhaitez, un tirage signé et dédicacé. Le tirage ajoute 20 € en A4 ou 35 € en A3. Frais d'envoi en sus.",
